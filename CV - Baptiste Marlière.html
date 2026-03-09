@@ -623,18 +623,22 @@
         </div>
         <div>
           <!-- Formulaire "mail to" simple, à remplacer éventuellement par un vrai back-end -->
-          <form action="mailto:baptiste.marliere@outlook.fr" method="post" enctype="text/plain">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="Nom" required>
+          <form id="contact-form">
+			<label for="nom">Nom</label>
+			<input type="text" id="nom" name="nom" required>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="Email" required>
+			<label for="email">Email</label>
+			<input type="email" id="email" name="email" required>
 
-            <label for="message">Message</label>
-            <textarea id="message" name="Message" placeholder="Bonjour Baptiste, nous souhaitons échanger avec vous à propos d'une alternance..."></textarea>
+			<label for="sujet">Sujet</label>
+			<input type="text" id="sujet" name="sujet" placeholder="Candidature pour une alternance en gestion" required>
 
-            <button type="submit">Envoyer le message</button>
-          </form>
+			<label for="message">Message</label>
+			<textarea id="message" name="message" placeholder="Bonjour Baptiste, nous souhaitons échanger avec vous à propos d'une alternance..." required></textarea>
+
+			<button type="submit">Envoyer le message</button>
+			<p id="contact-feedback" style="font-size:0.85rem; color:var(--muted); margin-top:6px;"></p>
+		  </form>
         </div>
       </div>
     </section>
