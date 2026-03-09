@@ -651,8 +651,39 @@
 </footer>
 
 <script>
+  // Année dynamique dans le footer
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Formulaire de contact "automatisé"
+  const form = document.getElementById('contact-form');
+  const feedback = document.getElementById('contact-feedback');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nom = document.getElementById('nom').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const sujet = document.getElementById('sujet').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Construction d'un email pré-rempli
+    const dest = "baptiste.marliere@outlook.fr";
+    const subject = encodeURIComponent(sujet || "Contact depuis le site CV");
+    const body = encodeURIComponent(
+      "Nom : " + nom + "\n" +
+      "Email : " + email + "\n\n" +
+      "Message :\n" + message
+    );
+
+    const mailtoLink = "mailto:" + dest + "?subject=" + subject + "&body=" + body;
+
+    // Ouvre le client mail avec un mail bien structuré
+    window.location.href = mailtoLink;
+
+    feedback.textContent = "Merci, un nouveau message est prêt dans votre client mail.";
+  });
 </script>
+
 
 </body>
 </html>
