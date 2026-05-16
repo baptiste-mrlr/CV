@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="d3b0d32b-bb97-480f-b4fc-851562dfe011" type="text/javascript" async></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64M94R2NDX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-64M94R2NDX');
+  </script>
+
+  <meta charset="UTF-8">
+  <title>Portfolio – Baptiste Marlière | Gestion & projets web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio de Baptiste Marlière, étudiant en gestion polyvalent à l'IAE de Valenciennes : projets web (site du club Les Albatros, boutique en ligne), organisation et outils numériques.">
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    emailjs.init("oL7GfoSeHsHqlw-MG");
+  </script>
+
+  <style>
+    :root {
+      --primary: #1b4b82;
+      --secondary: #f4f6fb;
+      --accent: #ffb703;
+      --text: #222;
+      --muted: #666;
+      --bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    h1, h2, h3, h4, h5, h6 { text-align: left; }
+
+    a,
+	a:visited {
+	  color: #1b4b82;
+	  text-decoration: none;
+	}
+	
+	/* Les boutons du header gardent toujours leur couleur */
+	.btn-primary,
+	.btn-primary:visited {
+	  color: #123456;
+	}
+	.btn-outline,
+	.btn-outline:visited {
+	  color: white;
+	}
+
+    a:hover { color: #163a63; text-decoration: underline; }
+    nav a { color: #222; }
+    nav a:hover { color: #1b4b82; }
+
+    header {
+      background: linear-gradient(135deg, #123456, #1b4b82);
+      background-size: 200% 200%;
+      background-position: 50% 0%;
+      color: white;
+      padding: 60px 20px 40px;
+    }
+
+    .container { max-width: 1050px; margin: 0 auto; padding: 0 20px; }
+
+    .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; }
+    .hero-text { flex: 1 1 320px; }
+    .hero h1 { font-size: 2.4rem; margin-bottom: 10px; }
+    .hero h2 { font-size: 1.3rem; font-weight: 400; margin-bottom: 15px; opacity: 0.9; }
+    .hero p { margin-bottom: 20px; }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .tag { border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); padding: 4px 10px; font-size: 0.8rem; opacity: 0.9; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .btn-primary, .btn-outline {
+      border-radius: 999px; padding: 9px 18px; font-size: 0.9rem;
+      border: 1px solid white; cursor: pointer; display: inline-block;
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, background-color 0.18s ease-out, color 0.18s ease-out;
+    }
+    .btn-primary { background: white; color: #123456; font-weight: 600; }
+    .btn-outline { background: transparent; color: white; }
+    .btn-primary:hover, .btn-outline:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.18); }
+    .btn-primary:hover { background: #f3f4ff; }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+    .hero-photo {
+      flex: 0 0 160px; width: 160px; height: 160px; border-radius: 50%;
+      background: #eee; border: 3px solid rgba(255,255,255,0.7);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo img { width: 110%; height: 110%; object-fit: cover; object-position: center 20%; }
+
+    .contact-inline { margin-top: 15px; font-size: 0.9rem; opacity: 0.9; }
+    .contact-inline span { margin-right: 12px; }
+
+    nav { background: white; border-bottom: 1px solid #e3e6ee; position: sticky; top: 0; z-index: 10; }
+    nav .nav-inner {
+      max-width: 1050px; margin: 0 auto; padding: 8px 20px;
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    }
+    nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9rem; }
+
+    main { padding: 40px 0 60px; background: var(--secondary); }
+
+    section {
+      margin-bottom: 40px; background: white; border-radius: 12px;
+      padding: 24px 22px; box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    section.is-visible { opacity: 1; transform: translateY(0); }
+    section h3 { font-size: 1.3rem; margin-bottom: 16px; color: var(--primary); }
+
+    .grid-2 { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 24px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chip {
+      background: var(--secondary); border-radius: 999px; padding: 4px 10px;
+      font-size: 0.8rem; color: var(--muted);
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, background-color 0.16s ease-out;
+    }
+    .chip:hover { transform: translateY(-2px); background: #e0e7ff; box-shadow: 0 6px 12px rgba(15,23,42,0.12); }
+
+    .experience-item, .edu-item { margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #f0f2f7; }
+    .experience-item:last-child, .edu-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+    .exp-header, .edu-header { display: flex; justify-content: space-between; gap: 8px; font-size: 0.92rem; margin-bottom: 4px; }
+    .exp-title, .edu-title { font-weight: 600; }
+    .exp-meta, .edu-meta { font-size: 0.85rem; color: var(--muted); }
+    .experience-item ul, .edu-item ul { margin-left: 16px; margin-top: 6px; font-size: 0.9rem; }
+    .experience-item li, .edu-item li { margin-bottom: 4px; }
+
+    .skills-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+    #competences, #competences * { text-align: left; }
+    .skills-block { background: #f9fafb; border-radius: 10px; padding: 10px 12px; transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, background-color 0.18s ease-out; }
+    .skills-block:hover { background: #eef2ff; transform: translateY(-3px); box-shadow: 0 8px 18px rgba(15,23,42,0.08); }
+    .skills-block h4 { font-size: 1rem; margin-bottom: 8px; color: var(--text); }
+    .skills-block ul { list-style: none; font-size: 0.9rem; }
+    .skills-block li { margin-bottom: 4px; }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; }
+    .badge {
+      background: #eef2ff; color: #3730a3; padding: 4px 10px; border-radius: 999px;
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, background-color 0.16s ease-out, color 0.16s ease-out;
+      cursor: default;
+    }
+    .badge:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 6px 12px rgba(15,23,42,0.12); background: #e0e7ff; color: #1d327a; }
+
+    .interests-list { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.9rem; }
+    .interest {
+      padding: 6px 10px; border-radius: 999px; background: var(--secondary);
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, background-color 0.16s ease-out;
+    }
+    .interest:hover { transform: translateY(-2px); background: #e0f2fe; box-shadow: 0 6px 12px rgba(15,23,42,0.1); }
+
+    .contact-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 24px; align-items: start; }
+
+    form label { font-size: 0.9rem; display: block; margin-bottom: 4px; }
+    form input, form textarea {
+      width: 100%; padding: 8px 10px; border-radius: 8px;
+      border: 1px solid #d0d4e4; font-size: 0.9rem; margin-bottom: 10px; font-family: inherit;
+    }
+    form textarea { min-height: 120px; resize: vertical; }
+    form button {
+      border: none; background: var(--primary); color: white;
+      padding: 9px 18px; border-radius: 999px; font-size: 0.9rem; cursor: pointer;
+      transition: background-color 0.18s ease-out, transform 0.18s ease-out, box-shadow 0.18s ease-out;
+    }
+    form button:hover { background: #163a63; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(15,23,42,0.12); }
+    form button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
+    .project-card {
+      background: #f9fafb; border-radius: 12px; padding: 16px 16px 18px;
+      border: 1px solid #e5e7eb; display: flex; flex-direction: column; gap: 8px;
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out, background-color 0.18s ease-out;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 22px rgba(15,23,42,0.12); border-color: #d0d4e4; background: #ffffff; }
+    .project-tagline { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .project-title { font-weight: 600; font-size: 1rem; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; font-size: 0.85rem; }
+    .project-link-pill {
+      padding: 4px 10px; border-radius: 999px; background: #e0f2fe; color: #0f172a;
+      text-decoration: none; border: 1px solid #bae6fd;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: background-color 0.16s ease-out, transform 0.16s ease-out, box-shadow 0.16s ease-out;
+    }
+    .project-link-pill:hover { background: #bae6fd; transform: translateY(-1px); box-shadow: 0 6px 12px rgba(15,23,42,0.14); }
+
+    footer { text-align: center; font-size: 0.8rem; color: var(--muted); padding: 18px 10px 24px; background: white; border-top: 1px solid #e3e6ee; }
+
+    @media (max-width: 768px) {
+      .hero { flex-direction: column-reverse; align-items: center; }
+      nav .nav-inner { flex-direction: column; align-items: flex-start; }
+      .grid-2, .contact-grid { grid-template-columns: 1fr; }
+      .hero-text { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container hero">
+    <div class="hero-text">
+      <h1>Baptiste Marlière</h1>
+      <h2>Étudiant en gestion – futur alternant en Management des Organisations (gestion, organisation et outils numériques)</h2>
+      <p>
+        Étudiant sérieux, autonome et impliqué, je prépare une Licence 3 Management des Organisations à l'IAE de Valenciennes en alternance (2 jours à l'école, 3 jours en entreprise) pour l'année 2026-2027.
+        Je développe en parallèle des projets concrets, comme le site web et la boutique en ligne du club de natation Les Albatros, pour mettre en pratique mes compétences en organisation et outils numériques.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Gestion & organisation</span>
+        <span class="tag">Projets web & boutique en ligne</span>
+        <span class="tag">Outils numériques & IA</span>
+        <span class="tag">Alternance 2026-2027</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Me contacter</a>
+        <a href="CV - Baptiste Marlière.pdf" class="btn-outline" target="_blank">Télécharger mon CV</a>
+        <a href="tel:+33630861961" class="btn-outline">Appeler</a>
+      </div>
+      <div class="contact-inline">
+        <span>📞 <a href="tel:+33630861961" style="color:white;">06 30 86 19 61</a></span>
+        <span>✉️ <a href="mailto:baptiste.marliere@outlook.fr" style="color:white;">baptiste.marliere@outlook.fr</a></span>
+        <span>📍 Mecquignies (59) – Permis B, véhiculé</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="Photo de profil.jpg" alt="Photo de Baptiste Marlière">
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <div style="font-weight:600; font-size:0.95rem;">BM</div>
+    <ul>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#apporter">Ce que je peux apporter</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#projets-personnels">Projets personnels</a></li>
+      <li><a href="#experiences">Expériences</a></li>
+      <li><a href="#formation">Formation</a></li>
+      <li><a href="#interets">Centres d'intérêt</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <!-- À PROPOS -->
+    <section id="apropos">
+      <h3>À propos</h3>
+      <div class="grid-2">
+        <div>
+          <p>Actuellement en deuxième année de Licence de gestion à l'IAE de Valenciennes, je m'oriente vers une Licence 3 Management des Organisations en alternance. Mes expériences en cabinet d'expertise comptable, dans le secteur ferroviaire et au sein d'un club sportif m'ont permis de découvrir des environnements variés et de développer une vision concrète du fonctionnement d'une organisation.</p>
+          <p>Polyvalent et curieux, je m'intéresse autant aux aspects opérationnels (organisation, logistique, relation terrain) qu'aux outils numériques (tableaux de bord, bureautique avancée, IA). Le développement du site web du club Les Albatros et de sa boutique en ligne m'a permis de lier ces deux dimensions dans un projet réel.</p>
+        </div>
+        <div>
+          <div class="chips">
+            <span class="chip">Étudiant en gestion polyvalent</span>
+            <span class="chip">Management des Organisations</span>
+            <span class="chip">Site web & e‑boutique</span>
+            <span class="chip">Esprit d'équipe & engagement associatif</span>
+          </div>
+          <div style="margin-top:14px; font-size:0.9rem; color:var(--muted);">
+            Disponible à partir de septembre 2026, avec un rythme 2 jours à l'école / 3 jours en entreprise, et une forte motivation pour m'investir sur la durée.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CE QUE JE PEUX APPORTER -->
+    <section id="apporter">
+      <h3>Ce que je peux apporter à votre entreprise</h3>
+      <p style="margin-bottom:8px; font-size:0.9rem;">En tant qu'alternant en gestion, mon objectif est de vous faire gagner du temps et de la clarté dans votre organisation tout en renforçant vos équipes au quotidien, notamment grâce à des outils numériques simples et efficaces.</p>
+      <ul style="margin-left:16px; font-size:0.9rem;">
+        <li><strong>Organisation et optimisation de processus :</strong> participation à la structuration des tâches, amélioration des routines et suivi opérationnel.</li>
+        <li><strong>Utilisation d'outils numériques et d'IA :</strong> appui sur les outils bureautiques, les plateformes collaboratives et les solutions d'IA pour faciliter le travail des équipes.</li>
+        <li><strong>Création de tableaux de bord et analyse :</strong> mise en forme de données dans des tableaux de bord simples et lisibles pour suivre l'activité.</li>
+        <li><strong>Participation à des projets d'équipe :</strong> contribution active à des projets transverses (événements, communication, recrutement, organisation interne, projets web).</li>
+        <li><strong>Capacité d'adaptation et apprentissage rapide :</strong> prise en main rapide de nouveaux outils et volonté de progresser en continu.</li>
+      </ul>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section id="competences">
+      <h3>Compétences</h3>
+      <div class="skills-columns">
+        <div class="skills-block">
+          <h4>📊 Compétences en gestion & organisation</h4>
+          <ul>
+            <li>Soutien à la gestion opérationnelle (organisation d'événements, logistique, coordination).</li>
+            <li>Sourcing et analyse de candidatures (LinkedIn, site carrière, CVthèques).</li>
+            <li>Conduite d'entretiens téléphoniques de préqualification.</li>
+            <li>Organisation de job dating et d'actions de recrutement.</li>
+            <li>Approche GPEC et adéquation profil / poste.</li>
+          </ul>
+        </div>
+        <div class="skills-block">
+          <h4>🏢 Compétences en gestion d'entreprise</h4>
+          <ul>
+            <li>Suivi des commandes et gestion des stocks.</li>
+            <li>Analyse de la satisfaction client et actions marketing.</li>
+            <li>Initiation à la comptabilité (traitement de factures, ERP).</li>
+            <li>Contrôle de gestion : tableaux de bord, suivi budgétaire.</li>
+          </ul>
+        </div>
+        <div class="skills-block">
+          <h4>💻 Compétences numériques</h4>
+          <ul>
+            <li>Excel, Word, PowerPoint – niveau avancé.</li>
+            <li>Canva – création de supports visuels (affiches, flyers, visuels pour les réseaux).</li>
+            <li>Création de sites web vitrine (HTML/CSS et outils en ligne).</li>
+            <li>Mise en place d'une boutique en ligne (visuels produits, commandes).</li>
+            <li>Montage vidéo simple pour des événements ou contenus de communication.</li>
+            <li>Outils d'intelligence artificielle et automatisation de tâches.</li>
+          </ul>
+        </div>
+        <div class="skills-block">
+          <h4>🌍 Langues & soft skills</h4>
+          <ul>
+            <li>Français : langue maternelle.</li>
+            <li>Anglais : niveau moyen.</li>
+            <li>Rigueur, autonomie et sens du relationnel.</li>
+            <li>Esprit d'équipe, persévérance et discipline (pratique sportive en club).</li>
+            <li>Curiosité, capacité d'adaptation et envie d'apprendre.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS PORTFOLIO -->
+    <section id="projets">
+      <h3>Projets & réalisations (portfolio)</h3>
+      <p style="margin-bottom:10px;">Voici quelques projets concrets que j'ai réalisés, notamment autour du club de natation Les Albatros, qui illustrent ma capacité à gérer un projet web de A à Z (contenu, organisation, outils).</p>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-tagline">Projet principal</div>
+          <div class="project-title">Site web & e‑boutique du club Les Albatros</div>
+          <p style="font-size:0.9rem;">Conception et mise à jour du site vitrine du club de natation Les Albatros (<a href="https://www.cn-albatros.fr" target="_blank">www.cn-albatros.fr</a>) : présentation du club, informations pratiques, actualités et événements. Mise en place récente d'une boutique en ligne pour mettre les articles du club en avant et permettre aux adhérents de passer commande plus facilement.</p>
+          <ul style="margin-left:16px; font-size:0.9rem; margin-top:6px;">
+            <li>Structure des pages : accueil, infos pratiques, équipes, événements.</li>
+            <li>Création de contenus (textes, visuels) et mise en forme cohérente avec l'image du club.</li>
+            <li>Mise en ligne des articles de la boutique (visuels produits, prix, descriptions).</li>
+            <li>Suivi des besoins du bureau du club et ajustements en continu.</li>
+          </ul>
+          <div class="project-links">
+            <a class="project-link-pill" href="https://www.cn-albatros.fr" target="_blank">🌐 Voir le site du club</a>
+            <a class="project-link-pill" href="https://www.cn-albatros.fr/boutique" target="_blank">🛒 Voir la boutique en ligne</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tagline">Projet RH</div>
+          <div class="project-title">Recrutement & job dating chez BDL Experts</div>
+          <p style="font-size:0.9rem;">Participation active à l'organisation d'un job dating alternants au sein d'un cabinet d'expertise comptable : définition des besoins, sélection de candidatures, entretiens téléphoniques et accueil des candidats le jour J.</p>
+          <ul style="margin-left:16px; font-size:0.9rem; margin-top:6px;">
+            <li>Préparation des annonces et des critères de sélection.</li>
+            <li>Tri et analyse des candidatures (matching profil/poste).</li>
+            <li>Entretiens de préqualification et suivi des candidats.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tagline">Communication</div>
+          <div class="project-title">Communication RH & contenus LinkedIn</div>
+          <p style="font-size:0.9rem;">Contribution à la rédaction de posts LinkedIn mettant en valeur la culture d'entreprise, les actions RSE et la vie du cabinet, dans une optique de marque employeur.</p>
+          <ul style="margin-left:16px; font-size:0.9rem; margin-top:6px;">
+            <li>Proposition d'angles de communication (vie d'équipe, engagements, événements).</li>
+            <li>Rédaction de posts et choix des visuels.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-tagline">Données & suivi</div>
+          <div class="project-title">Tableaux de bord & supports</div>
+          <p style="font-size:0.9rem;">Réalisation de tableaux de bord (Excel) et de supports de présentation (PowerPoint, Canva) pour suivre l'activité et présenter des informations de manière claire.</p>
+          <ul style="margin-left:16px; font-size:0.9rem; margin-top:6px;">
+            <li>Tableaux de bord simples et lisibles (indicateurs clés).</li>
+            <li>Supports visuels pour réunions, présentations ou communication interne.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PROJETS PERSONNELS -->
+    <section id="projets-personnels">
+      <h3>Projets personnels</h3>
+      <p style="margin-bottom:10px;">En parallèle de mes études, je développe des projets personnels qui me permettent d'expérimenter, d'apprendre et de mettre en pratique mes compétences numériques dans des contextes concrets.</p>
+      <ul style="margin-left:16px; font-size:0.9rem;">
+        <li><strong>Création de ce site web CV / portfolio :</strong> conception et mise en ligne d'un site vitrine personnel pour présenter mon parcours, mes compétences et mes expériences.</li>
+        <li><strong>Site & communication des Albatros :</strong> participation active à la communication du club de natation (visuels, pages, informations mises à jour).</li>
+        <li><strong>Montage vidéo d'événements du club :</strong> réalisation et montage de vidéos pour valoriser les compétitions et événements du club de natation.</li>
+        <li><strong>Création de supports visuels :</strong> conception d'affiches, flyers et visuels pour la communication du club et de projets étudiants (via Canva).</li>
+        <li><strong>Gestion et vente d'articles sur plateformes en ligne :</strong> mise en ligne de produits, suivi des annonces et échanges avec les acheteurs.</li>
+      </ul>
+    </section>
+
+    <!-- EXPÉRIENCES -->
+    <section id="experiences">
+      <h3>Expériences professionnelles & associatives</h3>
+
+      <div class="experience-item">
+        <div class="exp-header">
+          <div class="exp-title">Stagiaire Chargé de recrutement & marque employeur – BDL Experts</div>
+          <div class="exp-meta">Janvier 2026 – Valenciennes</div>
+        </div>
+        <div class="exp-meta">Cabinet d'expertise comptable, audit & conseil</div>
+        <ul>
+          <li>Participation complète au processus de recrutement (stagiaires, alternants, profils juniors).</li>
+          <li>Sourcing actif : LinkedIn, site carrière, écoles partenaires, CVthèques (Meteojob, Hellowork).</li>
+          <li>Tri et analyse des candidatures (matching profil/poste, critères GPEC).</li>
+          <li>Conduite d'entretiens téléphoniques de préqualification.</li>
+          <li>Organisation et participation à un job dating alternants.</li>
+          <li>Mise à jour des tableaux de bord RH et analyse des canaux de recrutement.</li>
+          <li>Contribution à la communication RH sur LinkedIn (culture d'entreprise, RSE).</li>
+        </ul>
+        <div class="badges" style="margin-top:8px;">
+          <span class="badge">Gestion & RH</span>
+          <span class="badge">Marque employeur</span>
+          <span class="badge">Tableaux de bord</span>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="exp-header">
+          <div class="exp-title">Stagiaire – SNCF Voyageurs</div>
+          <div class="exp-meta">Juin 2025 – Lille</div>
+        </div>
+        <div class="exp-meta">Transport de voyageurs</div>
+        <ul>
+          <li>Observation et participation dans plusieurs services : approvisionnement, marketing, comptabilité, contrôle de gestion.</li>
+          <li>Suivi des commandes, gestion des stocks et analyse de la satisfaction client.</li>
+          <li>Découverte des processus comptables (factures, ERP) et du suivi budgétaire via tableaux de bord.</li>
+        </ul>
+        <div class="badges" style="margin-top:8px;">
+          <span class="badge">Vision transversale</span>
+          <span class="badge">Contrôle de gestion</span>
+          <span class="badge">Marketing & clients</span>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="exp-header">
+          <div class="exp-title">Stagiaire – SNCF Voyageurs</div>
+          <div class="exp-meta">Février 2022 – Valenciennes</div>
+        </div>
+        <div class="exp-meta">Transport de voyageurs</div>
+        <ul>
+          <li>Découverte du métier de conducteur et de contrôleur.</li>
+          <li>Accompagnement sur le terrain : accueil, sécurité, relation voyageurs.</li>
+          <li>Échanges avec les agents commerciaux et responsables d'escale.</li>
+          <li>Initiation à la gestion des flux en gare et à la régularité des trains.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="exp-header">
+          <div class="exp-title">Bénévole & pratiquant – Club de natation Les Albatros</div>
+          <div class="exp-meta">2014 – Aujourd'hui – Aulnoye-Aymeries</div>
+        </div>
+        <div class="exp-meta">Engagement sportif et associatif</div>
+        <ul>
+          <li>Pratique sportive en club depuis 10 ans, avec une présence régulière aux entraînements et compétitions.</li>
+          <li>Participation active à l'organisation de compétitions et d'événements (soirées du club, manifestations sportives).</li>
+          <li>Gestion logistique et communication : site vitrine, boutique en ligne, affiches, planning, inscriptions.</li>
+          <li>Coordination avec les bénévoles et les encadrants pour assurer le bon déroulement des événements.</li>
+        </ul>
+        <div class="badges" style="margin-top:8px;">
+          <span class="badge">Organisation d'événements</span>
+          <span class="badge">Travail d'équipe</span>
+          <span class="badge">Discipline & engagement</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMATION -->
+    <section id="formation">
+      <h3>Formation</h3>
+      <div class="edu-item">
+        <div class="edu-header">
+          <div class="edu-title">Licence 2 de gestion</div>
+          <div class="edu-meta">2024 – 2026 – IAE de Valenciennes</div>
+        </div>
+        <ul>
+          <li>Parcours orienté vers le Management des Organisations.</li>
+          <li>Préparation d'une Licence 3 MDO en alternance pour l'année 2026-2027.</li>
+        </ul>
+      </div>
+      <div class="edu-item">
+        <div class="edu-header">
+          <div class="edu-title">Baccalauréat général</div>
+          <div class="edu-meta">2021 – 2024 – Lycée des Nerviens</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-header">
+          <div class="edu-title">Brevet des collèges</div>
+          <div class="edu-meta">2017 – 2021 – Collège Jean Lemaire de Belges</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CENTRES D'INTÉRÊT -->
+    <section id="interets">
+      <h3>Centres d'intérêt</h3>
+      <div class="interests-list">
+        <span class="interest">Musculation</span>
+        <span class="interest">Natation (pratiquée en club depuis 10 ans)</span>
+        <span class="interest">Vélo</span>
+        <span class="interest">Technologie & IA</span>
+        <span class="interest">Outils numériques</span>
+        <span class="interest">Plateformes de vente</span>
+        <span class="interest">Musique</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h3>Me contacter</h3>
+      <div class="contact-grid">
+        <div>
+          <p>Vous recherchez un alternant en gestion polyvalent, à l'aise avec les outils numériques, capable de mener des projets web concrets (site, boutique, communication) et motivé pour s'investir dans vos projets ? N'hésitez pas à me contacter pour échanger sur vos besoins et voir comment je peux contribuer à vos équipes.</p>
+          <ul style="list-style:none; margin-top:10px; font-size:0.9rem;">
+            <li>📞 <a href="tel:+33630861961">06 30 86 19 61</a></li>
+            <li>✉️ <a href="mailto:baptiste.marliere@outlook.fr">baptiste.marliere@outlook.fr</a></li>
+            <li>📍 407 rue du Timon, 59570 Mecquignies, France</li>
+            <li>🚗 Permis B – véhiculé</li>
+            <li>🔗 <a href="https://www.linkedin.com/in/baptiste-mrlr" target="_blank">Mon profil LinkedIn</a></li>
+          </ul>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:10px;">Références disponibles sur demande (tuteurs de stage, responsables associatifs).</p>
+        </div>
+        <div>
+          <form id="contact-form">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="from_name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="from_email" required>
+
+            <label for="sujet">Sujet</label>
+            <input type="text" id="sujet" name="subject" placeholder="Candidature pour une alternance en gestion" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Bonjour Baptiste, nous souhaitons échanger avec vous à propos d'une alternance..." required></textarea>
+
+            <button type="submit" id="submit-btn">Envoyer le message</button>
+            <p id="contact-feedback" style="font-size:0.85rem; margin-top:6px;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> – Baptiste Marlière – Site CV / Portfolio
+</footer>
+
+<script>
+  // Année dynamique
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll fluide
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Animation scroll IntersectionObserver
+  const sections = document.querySelectorAll('main section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  sections.forEach(section => observer.observe(section));
+
+  // Animation dégradé header au scroll
+  (function() {
+    const headerEl = document.querySelector('header');
+    if (!headerEl) return;
+    function updateHeaderBackground() {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      headerEl.style.backgroundPosition = `50% ${ratio * 100}%`;
+    }
+    window.addEventListener('scroll', updateHeaderBackground);
+    window.addEventListener('load', updateHeaderBackground);
+  })();
+
+  // Formulaire EmailJS – double envoi
+  const form = document.getElementById('contact-form');
+  const feedback = document.getElementById('contact-feedback');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Envoi en cours...";
+    feedback.style.color = "var(--muted)";
+    feedback.textContent = "";
+
+    // 1. Mail de notification envoyé à Baptiste
+    emailjs.sendForm("service_1ixgzku", "template_jt4nijd", form)
+      .then(function() {
+        // 2. Mail de confirmation envoyé à l'entreprise
+        return emailjs.sendForm("service_1ixgzku", "template_cnrqwqe", form);
+      })
+      .then(function() {
+        feedback.style.color = "#15803d";
+        feedback.textContent = "✅ Message envoyé ! Vous recevrez une confirmation par mail.";
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Envoyer le message";
+      })
+      .catch(function(error) {
+        feedback.style.color = "#b91c1c";
+        feedback.textContent = "❌ Une erreur est survenue. Veuillez réessayer ou m'écrire directement par mail.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Envoyer le message";
+        console.error("EmailJS error:", error);
+      });
+  });
+</script>
+
+</body>
+</html>
