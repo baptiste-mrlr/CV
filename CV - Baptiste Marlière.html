@@ -1,675 +1,2841 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio – Baptiste Marlière | Gestion & projets web</title>
+  <title>Baptiste Marlière — Portfolio | Management, Projets Web & RH</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio de Baptiste Marlière, étudiant en gestion à l'IAE de Valenciennes : projets web (site e-commerce Les Albatros), RH, logistique et outils numériques.">
+  <meta name="description" content="Portfolio de Baptiste Marlière, étudiant en Licence 3 Management des Organisations (MDO) à l'IAE de Valenciennes : projets web & e-commerce, RH, logistique, relation client et outils numériques.">
 
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript">emailjs.init("oL7GfoSeHsHqlw-MG");</script>
+  <script type="text/javascript">
+    (function() {
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init("oL7GfoSeHsHqlw-MG");
+      }
+    })();
+  </script>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary: #1b4b82;
-      --primary-dark: #123456;
-      --secondary: #f4f6fb;
-      --accent: #ffb703;
-      --text: #222;
-      --muted: #666;
-      --bg: #ffffff;
+    /* ==========================================================================
+       VARIABLES & THÈMES (DARK AURORA GLASS PAR DÉFAUT + LIGHT FROSTED GLASS)
+       ========================================================================== */
+    :root, [data-theme="dark"] {
+      --bg-base: #060a14;
+      --bg-secondary: #0b1121;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-violet: #8b5cf6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+
+      --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #6366f1 55%, #8b5cf6 100%);
+      --gradient-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(99, 102, 241, 0.25));
+
+      /* Glassmorphism tokens */
+      --glass-bg: rgba(15, 23, 42, 0.52);
+      --glass-bg-hover: rgba(22, 33, 58, 0.68);
+      --glass-bg-strong: rgba(15, 23, 42, 0.78);
+      --glass-card-inner: rgba(255, 255, 255, 0.035);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-border-highlight: rgba(56, 189, 248, 0.45);
+      --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      --glass-shadow-hover: 0 28px 65px rgba(2, 6, 23, 0.65), 0 0 35px rgba(56, 189, 248, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      --glass-blur: blur(22px) saturate(180%);
+
+      /* Orbs opacity */
+      --orb-opacity: 0.42;
+      --grid-color: rgba(255, 255, 255, 0.03);
+      --input-bg: rgba(15, 23, 42, 0.65);
+      --chip-bg: rgba(255, 255, 255, 0.06);
+      --chip-border: rgba(255, 255, 255, 0.12);
+      --badge-bg: rgba(56, 189, 248, 0.12);
+      --badge-text: #7dd3fc;
+      --badge-border: rgba(56, 189, 248, 0.28);
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    [data-theme="light"] {
+      --bg-base: #eef3fb;
+      --bg-secondary: #e2eaf7;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+
+      --accent-blue: #0284c7;
+      --accent-indigo: #4f46e5;
+      --accent-violet: #7c3aed;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+
+      --gradient-primary: linear-gradient(135deg, #0284c7 0%, #4f46e5 55%, #7c3aed 100%);
+      --gradient-glow: linear-gradient(135deg, rgba(2, 132, 199, 0.16), rgba(79, 70, 229, 0.16));
+
+      /* Frosted Daylight Glass tokens */
+      --glass-bg: rgba(255, 255, 255, 0.62);
+      --glass-bg-hover: rgba(255, 255, 255, 0.82);
+      --glass-bg-strong: rgba(255, 255, 255, 0.86);
+      --glass-card-inner: rgba(255, 255, 255, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-border-highlight: rgba(79, 70, 229, 0.45);
+      --glass-shadow: 0 18px 42px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --glass-shadow-hover: 0 24px 55px rgba(15, 23, 42, 0.14), 0 0 30px rgba(79, 70, 229, 0.12), inset 0 1px 0 #ffffff;
+      --glass-blur: blur(22px) saturate(190%);
+
+      --orb-opacity: 0.35;
+      --grid-color: rgba(15, 23, 42, 0.04);
+      --input-bg: rgba(255, 255, 255, 0.75);
+      --chip-bg: rgba(15, 23, 42, 0.05);
+      --chip-border: rgba(15, 23, 42, 0.1);
+      --badge-bg: rgba(79, 70, 229, 0.1);
+      --badge-text: #4338ca;
+      --badge-border: rgba(79, 70, 229, 0.25);
+    }
+
+    /* ==========================================================================
+       RESET & BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      position: relative;
+      min-height: 100vh;
     }
-    h1,h2,h3,h4,h5,h6 { text-align: left; }
 
-    /* Liens */
-    a, a:visited { color: var(--primary); text-decoration: none; }
-    a:hover { color: #163a63; text-decoration: underline; }
-    nav a, nav a:visited { color: #222; }
-    nav a:hover { color: var(--primary); }
-    .btn-primary, .btn-primary:visited { color: #123456 !important; }
-    .btn-outline, .btn-outline:visited { color: white !important; }
-
-    /* HEADER */
-    header {
-      background: linear-gradient(135deg, #123456, #1b4b82);
-      color: white;
-      padding: 60px 20px 40px;
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
     }
-    .container { max-width: 1050px; margin: 0 auto; padding: 0 20px; }
-    .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; }
-    .hero-text { flex: 1 1 320px; }
-    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 10px; }
-    .hero h2 { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 400; margin-bottom: 15px; opacity: 0.9; }
-    .hero > .hero-text > p { margin-bottom: 20px; opacity: 0.92; font-size: 0.95rem; }
 
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    .tag { border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); padding: 4px 10px; font-size: 0.78rem; opacity: 0.9; }
-
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-    .btn-primary, .btn-outline {
-      border-radius: 999px; padding: 9px 18px; font-size: 0.9rem;
-      border: 1px solid white; cursor: pointer; display: inline-block;
-      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, background-color 0.18s ease-out;
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: all 0.25s ease;
     }
-    .btn-primary { background: white; font-weight: 600; }
-    .btn-outline { background: transparent; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.18); background: #f3f4ff; text-decoration: none; }
-    .btn-outline:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.18); background: rgba(255,255,255,0.12); text-decoration: none; }
 
-    .hero-photo {
-      flex: 0 0 160px; width: 160px; height: 160px; border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.7); overflow: hidden;
-      display: flex; align-items: center; justify-content: center; background: #eee;
+    ::selection {
+      background: rgba(99, 102, 241, 0.35);
+      color: #fff;
     }
-    .hero-photo img { width: 110%; height: 110%; object-fit: cover; object-position: center 20%; }
-    .contact-inline { margin-top: 15px; font-size: 0.88rem; opacity: 0.9; }
-    .contact-inline span { margin-right: 12px; }
-    .contact-inline a { color: white !important; }
 
-    /* NAV */
-    nav { background: white; border-bottom: 1px solid #e3e6ee; position: sticky; top: 0; z-index: 10; }
-    nav .nav-inner {
-      max-width: 1050px; margin: 0 auto; padding: 8px 20px;
-      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    /* ==========================================================================
+       SCROLL PROGRESS BAR
+       ========================================================================== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--gradient-primary);
+      z-index: 9999;
+      box-shadow: 0 0 12px var(--accent-blue);
+      transition: width 0.08s linear;
     }
-    nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.88rem; }
 
-    /* MAIN */
-    main { padding: 40px 0 60px; background: var(--secondary); }
-    section {
-      margin-bottom: 40px; background: white; border-radius: 12px;
-      padding: 24px 22px; box-shadow: 0 8px 18px rgba(15,23,42,0.05);
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    /* ==========================================================================
+       ANIMATED BACKGROUND ORBS, MESH & CURSOR SPOTLIGHT
+       ========================================================================== */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
     }
-    section.is-visible { opacity: 1; transform: translateY(0); }
-    section > h3 { font-size: 1.25rem; margin-bottom: 16px; color: var(--primary); }
 
-    /* GRILLES */
-    .grid-2 { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 24px; }
-    .skills-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 18px; }
-    .contact-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 24px; align-items: start; }
-
-    /* CHIPS / BADGES */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .chip {
-      background: var(--secondary); border-radius: 999px; padding: 4px 10px;
-      font-size: 0.78rem; color: var(--muted);
-      transition: transform 0.16s, box-shadow 0.16s, background-color 0.16s;
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(95px);
+      opacity: var(--orb-opacity);
+      will-change: transform;
+      transition: opacity 0.5s ease;
     }
-    .chip:hover { transform: translateY(-2px); background: #e0e7ff; box-shadow: 0 6px 12px rgba(15,23,42,0.12); }
 
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.82rem; }
-    .badge {
-      background: #eef2ff; color: #3730a3; padding: 4px 10px; border-radius: 999px;
-      transition: transform 0.16s, box-shadow 0.16s, background-color 0.16s; cursor: default;
+    .orb-1 {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, #38bdf8 0%, #2563eb 70%, transparent 100%);
+      top: -120px;
+      left: -100px;
+      animation: floatOrb1 18s ease-in-out infinite alternate;
     }
-    .badge:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 6px 12px rgba(15,23,42,0.12); background: #e0e7ff; color: #1d327a; }
 
-    /* EXPÉRIENCES */
-    .experience-item, .edu-item { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid #f0f2f7; }
-    .experience-item:last-child, .edu-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-    .exp-header, .edu-header { display: flex; justify-content: space-between; gap: 8px; font-size: 0.92rem; margin-bottom: 4px; flex-wrap: wrap; }
-    .exp-title, .edu-title { font-weight: 600; }
-    .exp-meta, .edu-meta { font-size: 0.83rem; color: var(--muted); }
-    .experience-item ul, .edu-item ul { margin-left: 16px; margin-top: 6px; font-size: 0.88rem; }
-    .experience-item li, .edu-item li { margin-bottom: 4px; }
-
-    /* COMPÉTENCES */
-    #competences, #competences * { text-align: left; }
-    .skills-block {
-      background: #f9fafb; border-radius: 10px; padding: 12px 14px;
-      transition: transform 0.18s, box-shadow 0.18s, background-color 0.18s;
+    .orb-2 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #8b5cf6 0%, #4f46e5 70%, transparent 100%);
+      top: 25%;
+      right: -130px;
+      animation: floatOrb2 22s ease-in-out infinite alternate;
     }
-    .skills-block:hover { background: #eef2ff; transform: translateY(-3px); box-shadow: 0 8px 18px rgba(15,23,42,0.08); }
-    .skills-block h4 { font-size: 0.95rem; margin-bottom: 8px; color: var(--text); }
-    .skills-block ul { list-style: none; font-size: 0.88rem; }
-    .skills-block li { margin-bottom: 4px; }
 
-    /* PROJETS CARDS */
-    .project-card {
-      background: #f9fafb; border-radius: 12px; padding: 18px;
-      border: 1px solid #e5e7eb; display: flex; flex-direction: column; gap: 8px;
-      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, background-color 0.18s;
+    .orb-3 {
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, #06b6d4 0%, #3b82f6 70%, transparent 100%);
+      bottom: 8%;
+      left: 12%;
+      animation: floatOrb3 20s ease-in-out infinite alternate;
     }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 22px rgba(15,23,42,0.12); border-color: #c7d2fe; background: #fff; }
-    .project-card.featured { border: 2px solid var(--primary); background: #f0f4ff; }
-    .project-card.featured:hover { background: #e8eeff; }
-    .project-tagline { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
-    .project-tagline.highlight { color: var(--primary); font-weight: 600; }
-    .project-title { font-weight: 700; font-size: 1rem; color: var(--text); }
-    .project-desc { font-size: 0.88rem; color: #444; line-height: 1.6; }
-    .project-card ul { margin-left: 16px; font-size: 0.87rem; color: #444; }
-    .project-card li { margin-bottom: 3px; }
-    .project-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-    .project-link-pill {
-      padding: 5px 12px; border-radius: 999px; background: #e0f2fe; color: #0f172a;
-      text-decoration: none; border: 1px solid #bae6fd; font-size: 0.83rem;
-      display: inline-flex; align-items: center; gap: 5px;
-      transition: background-color 0.16s, transform 0.16s, box-shadow 0.16s;
-    }
-    .project-link-pill:hover { background: #bae6fd; transform: translateY(-1px); box-shadow: 0 6px 12px rgba(15,23,42,0.14); text-decoration: none; }
-    .project-link-pill.primary-pill { background: var(--primary); color: white; border-color: var(--primary); }
-    .project-link-pill.primary-pill:hover { background: var(--primary-dark); }
 
-    /* INTÉRÊTS */
-    .interests-list { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.9rem; }
-    .interest {
-      padding: 6px 12px; border-radius: 999px; background: var(--secondary);
-      transition: transform 0.16s, box-shadow 0.16s, background-color 0.16s;
+    .orb-4 {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, #f59e0b 0%, #ec4899 70%, transparent 100%);
+      bottom: -80px;
+      right: 15%;
+      opacity: calc(var(--orb-opacity) * 0.55);
+      animation: floatOrb1 25s ease-in-out infinite alternate-reverse;
     }
-    .interest:hover { transform: translateY(-2px); background: #e0f2fe; box-shadow: 0 6px 12px rgba(15,23,42,0.1); }
 
-    /* FORMULAIRE */
-    form label { font-size: 0.88rem; display: block; margin-bottom: 4px; font-weight: 500; }
+    @keyframes floatOrb1 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(80px, 60px) scale(1.12); }
+      100% { transform: translate(-40px, 110px) scale(0.94); }
+    }
+
+    @keyframes floatOrb2 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-90px, 80px) scale(1.08); }
+      100% { transform: translate(-30px, -70px) scale(0.92); }
+    }
+
+    @keyframes floatOrb3 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(100px, -60px) scale(1.1); }
+      100% { transform: translate(-60px, 40px) scale(0.95); }
+    }
+
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, #000 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, #000 40%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.09) 0%, rgba(99, 102, 241, 0.04) 45%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ==========================================================================
+       FLOATING GLASS NAVBAR
+       ========================================================================== */
+    .navbar-wrapper {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .navbar {
+      pointer-events: auto;
+      width: 100%;
+      max-width: 1120px;
+      background: var(--glass-bg-strong);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      padding: 10px 18px;
+      box-shadow: var(--glass-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .navbar.scrolled {
+      padding: 8px 16px;
+      border-color: var(--glass-border-highlight);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.96rem;
+      white-space: nowrap;
+    }
+
+    .nav-logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.45);
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 7px 13px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-primary);
+      background: var(--chip-bg);
+    }
+
+    .nav-links a.active {
+      background: var(--gradient-glow);
+      border: 1px solid var(--badge-border);
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-toggle, .mobile-menu-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--chip-bg);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+    }
+
+    .theme-toggle:hover, .mobile-menu-btn:hover {
+      transform: translateY(-2px) rotate(8deg);
+      border-color: var(--accent-blue);
+      background: var(--gradient-glow);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--gradient-primary);
+      color: #fff !important;
+      font-size: 0.82rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
+    }
+
+    /* ==========================================================================
+       LAYOUT & GLASS CARD SYSTEM
+       ========================================================================== */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .glass-card {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      box-shadow: var(--glass-shadow);
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.35s ease,
+                  background-color 0.35s ease;
+    }
+
+    /* Interactive mouse spotlight reflection inside glass cards */
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+        rgba(56, 189, 248, 0.11),
+        transparent 40%
+      );
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .glass-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass-card:hover {
+      border-color: var(--glass-border-highlight);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 135px 0 50px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--badge-border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--badge-text);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.12);
+    }
+
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      position: relative;
+    }
+
+    .pulse-dot::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      opacity: 0.5;
+      animation: pulseRing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.7rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.08;
+    }
+
+    .gradient-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle-wrap {
+      font-size: clamp(1.08rem, 2.2vw, 1.35rem);
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      min-height: 2.1em;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .typewriter-text {
+      color: var(--accent-blue);
+      border-right: 2px solid var(--accent-blue);
+      padding-right: 4px;
+      animation: blinkCursor 0.8s step-end infinite;
+    }
+
+    @keyframes blinkCursor {
+      50% { border-color: transparent; }
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 630px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 28px;
+    }
+
+    .hero-tag {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
+      backdrop-filter: blur(10px);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.25s ease;
+    }
+
+    .hero-tag:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+      background: var(--gradient-glow);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      font-family: inherit;
+    }
+
+    .btn-gradient {
+      background: var(--gradient-primary);
+      color: #ffffff !important;
+      box-shadow: 0 10px 28px rgba(56, 189, 248, 0.28);
+    }
+
+    .btn-gradient:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 35px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-glass {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary) !important;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .btn-glass:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-blue);
+      background: var(--glass-bg-hover);
+    }
+
+    /* Quick Contact Bar in Hero */
+    .hero-quick-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 12px;
+      background: var(--glass-card-inner);
+      border: 1px solid var(--glass-border);
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      background: var(--gradient-glow);
+    }
+
+    /* Hero Profile Visual Showcase */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-glass-frame {
+      padding: 26px;
+      border-radius: 30px;
+      width: 100%;
+      max-width: 370px;
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-ring-wrap {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      padding: 5px;
+      background: var(--gradient-primary);
+      box-shadow: 0 15px 40px rgba(56, 189, 248, 0.32);
+    }
+
+    .avatar-ring-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      filter: blur(16px);
+      opacity: 0.55;
+      z-index: -1;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.35; transform: scale(0.97); }
+      100% { opacity: 0.7; transform: scale(1.04); }
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--bg-secondary);
+      border: 3px solid var(--bg-base);
+    }
+
+    .avatar-inner img {
+      width: 112%;
+      height: 112%;
+      object-fit: cover;
+      object-position: center 18%;
+      transition: transform 0.5s ease;
+    }
+
+    .profile-glass-frame:hover .avatar-inner img {
+      transform: scale(1.06);
+    }
+
+    .profile-card-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .profile-card-role {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .profile-mini-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .mini-badge {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--badge-border);
+      font-weight: 500;
+    }
+
+    .profile-card-footer {
+      display: flex;
+      justify-content: space-around;
+      padding-top: 14px;
+      border-top: 1px solid var(--glass-border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .profile-card-footer strong {
+      display: block;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    /* Floating Glass Badges around Profile */
+    .floating-pill {
+      position: absolute;
+      padding: 9px 14px;
+      border-radius: 16px;
+      background: var(--glass-bg-strong);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border-highlight);
+      box-shadow: var(--glass-shadow);
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 3;
+      animation: floatBadge 5s ease-in-out infinite alternate;
+    }
+
+    .floating-pill.top-left {
+      top: 14px;
+      left: -18px;
+    }
+
+    .floating-pill.bottom-right {
+      bottom: 65px;
+      right: -18px;
+      animation-delay: 1.8s;
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-9px); }
+    }
+
+    /* ==========================================================================
+       STATS STRIP
+       ========================================================================== */
+    .stats-strip {
+      margin: 15px 0 60px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      padding: 22px 20px;
+      text-align: center;
+      border-radius: 20px;
+    }
+
+    .stat-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       SECTIONS & HEADINGS
+       ========================================================================== */
+    .section-block {
+      margin-bottom: 70px;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-blue);
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+    }
+
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       BENTO GRID: À PROPOS & CE QUE J'APPORTE
+       ========================================================================== */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .bento-col-7 { grid-column: span 7; }
+    .bento-col-5 { grid-column: span 5; }
+    .bento-col-4 { grid-column: span 4; }
+    .bento-col-12 { grid-column: span 12; }
+
+    .bento-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .bento-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--gradient-glow);
+      border: 1px solid var(--badge-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .bento-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .bento-card p {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+    }
+
+    .value-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .value-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .value-check {
+      color: var(--accent-emerald);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       COMPÉTENCES & LANGUES (INTERACTIVE FILTERABLE)
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--gradient-primary);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .skill-category-card {
+      padding: 26px;
+      transition: all 0.35s ease;
+    }
+
+    .skill-category-card.hidden-card {
+      display: none;
+    }
+
+    .skill-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .skill-card-header h4 {
+      font-size: 1.12rem;
+      font-weight: 700;
+    }
+
+    .skill-items {
+      display: grid;
+      gap: 12px;
+    }
+
+    .skill-row {
+      background: var(--glass-card-inner);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 11px 14px;
+      transition: all 0.22s ease;
+    }
+
+    .skill-row:hover {
+      border-color: var(--accent-blue);
+      transform: translateX(4px);
+    }
+
+    .skill-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .skill-level-tag {
+      font-size: 0.73rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .skill-bar-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(148, 163, 184, 0.16);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--gradient-primary);
+      width: 0;
+      transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .languages-strip {
+      margin-top: 20px;
+      padding: 22px 26px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .lang-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .lang-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px;
+      border-radius: 14px;
+      background: var(--glass-card-inner);
+      border: 1px solid var(--glass-border);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       PROJETS & RÉALISATIONS
+       ========================================================================== */
+    .projects-bento {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-glass-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .project-glass-card.featured-project {
+      grid-column: 1 / -1;
+      border: 1px solid var(--glass-border-highlight);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.08)), var(--glass-bg);
+    }
+
+    .featured-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .project-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .project-category-pill {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--badge-border);
+    }
+
+    .project-glass-card h4 {
+      font-size: 1.28rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .project-glass-card p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .project-bullets {
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .project-bullets li {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .project-bullets li::before {
+      content: "▹";
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    /* Interactive Browser Preview Mockup for Albatros */
+    .browser-mockup {
+      background: var(--bg-secondary);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .browser-topbar {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .browser-dots span:nth-child(1) { background: #ef4444; }
+    .browser-dots span:nth-child(2) { background: #f59e0b; }
+    .browser-dots span:nth-child(3) { background: #10b981; }
+
+    .browser-url {
+      flex: 1;
+      background: var(--glass-card-inner);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-family: monospace;
+    }
+
+    .browser-body {
+      padding: 22px;
+      background: linear-gradient(145deg, rgba(2, 132, 199, 0.18), rgba(30, 58, 138, 0.28));
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mockup-Preview-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .mockup-stat {
+      background: var(--glass-card-inner);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.78rem;
+    }
+
+    .mockup-stat strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--accent-blue);
+    }
+
+    /* ==========================================================================
+       TIMELINE EXPÉRIENCES PROFESSIONNELLES
+       ========================================================================== */
+    .timeline-wrapper {
+      position: relative;
+      padding-left: 34px;
+    }
+
+    .timeline-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 11px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-indigo), var(--accent-violet));
+      opacity: 0.55;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 26px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-base);
+      border: 3px solid var(--accent-blue);
+      box-shadow: 0 0 14px var(--accent-blue);
+      z-index: 2;
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.3);
+      background: var(--accent-blue);
+    }
+
+    .timeline-card {
+      padding: 26px;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .timeline-date {
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .timeline-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .timeline-list li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .timeline-list li::before {
+      content: "•";
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .glass-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--badge-border);
+    }
+
+    /* ==========================================================================
+       FORMATION & CENTRES D'INTÉRÊT
+       ========================================================================== */
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+
+    .edu-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .edu-glass-card {
+      padding: 22px 24px;
+      border-left: 4px solid var(--accent-blue);
+    }
+
+    .edu-year {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .edu-degree {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .interest-glass-card {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-radius: 20px;
+    }
+
+    .interest-emoji {
+      font-size: 1.6rem;
+    }
+
+    .interest-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .interest-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       CONTACT & FORMULAIRE GLASSMORPHISM
+       ========================================================================== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact-info-card, .contact-form-card {
+      padding: 32px;
+    }
+
+    .contact-methods {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .contact-method-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 16px;
+      background: var(--glass-card-inner);
+      border: 1px solid var(--glass-border);
+      transition: all 0.25s ease;
+    }
+
+    .contact-method-item:hover {
+      border-color: var(--accent-blue);
+      transform: translateX(4px);
+    }
+
+    .contact-method-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--gradient-glow);
+      border: 1px solid var(--badge-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-method-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .contact-method-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .copy-mini-btn {
+      padding: 6px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: var(--chip-bg);
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-mini-btn:hover {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Form Controls */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    form label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
     form input, form textarea {
-      width: 100%; padding: 9px 12px; border-radius: 8px;
-      border: 1px solid #d0d4e4; font-size: 0.9rem; margin-bottom: 10px;
-      font-family: inherit; transition: border-color 0.18s, box-shadow 0.18s;
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 14px;
+      background: var(--input-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(10px);
     }
-    form input:focus, form textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(27,75,130,0.12); }
-    form textarea { min-height: 120px; resize: vertical; }
-    form button {
-      border: none; background: var(--primary); color: white;
-      padding: 10px 20px; border-radius: 999px; font-size: 0.9rem; cursor: pointer; font-weight: 600;
-      transition: background-color 0.18s, transform 0.18s, box-shadow 0.18s;
+
+    form input::placeholder, form textarea::placeholder {
+      color: var(--text-muted);
+      opacity: 0.7;
     }
-    form button:hover { background: #163a63; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(15,23,42,0.12); }
-    form button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
-    /* FOOTER */
-    footer { text-align: center; font-size: 0.78rem; color: var(--muted); padding: 18px 10px 24px; background: white; border-top: 1px solid #e3e6ee; }
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    }
 
-    /* RESPONSIVE */
+    form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      padding: 12px 20px;
+      border-radius: 14px;
+      background: var(--glass-bg-strong);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--accent-emerald);
+      color: var(--text-primary);
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: var(--glass-shadow);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast-notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding: 30px 20px 40px;
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .featured-layout,
+      .dual-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bento-col-7, .bento-col-5, .bento-col-4 {
+        grid-column: span 12;
+      }
+
+      .skills-grid, .projects-bento {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero { flex-direction: column-reverse; align-items: center; }
-      nav .nav-inner { flex-direction: column; align-items: flex-start; }
-      .grid-2, .contact-grid { grid-template-columns: 1fr; }
-      .hero-text { text-align: left; }
-      .projects-grid { grid-template-columns: 1fr; }
+      .navbar {
+        border-radius: 22px;
+        flex-wrap: wrap;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 10px;
+        border-top: 1px solid var(--glass-border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .form-row-2, .interests-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-pill {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="container hero">
-    <div class="hero-text">
-      <h1>Baptiste Marlière</h1>
-      <h2>Étudiant en gestion – L3 MDO en alternance 2026-2027 · Projets web, RH & outils numériques</h2>
-      <p>
-        Étudiant sérieux et polyvalent, je prépare une Licence 3 de Gestion parcours Management des Organisations à l'IAE de Valenciennes en alternance. J'ai développé en parallèle un site e-commerce complet pour le club de natation Les Albatros, et accumulé des expériences concrètes en RH, logistique et relation client.
-      </p>
-      <div class="hero-tags">
-        <span class="tag">Gestion & organisation</span>
-        <span class="tag">Site web & e-commerce</span>
-        <span class="tag">Recrutement & RH</span>
-        <span class="tag">Outils numériques & IA</span>
-        <span class="tag">Alternance 2026-2027</span>
-      </div>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Me contacter</a>
-        <a href="https://baptiste-mrlr.github.io/CV/CV%202026%20-%20Baptiste%20Marli%C3%A8re.pdf" class="btn-outline" target="_blank">Télécharger mon CV</a>
-        <a href="tel:+33630861961" class="btn-outline">Appeler</a>
-      </div>
-      <div class="contact-inline">
-        <span>📞 <a href="tel:+33630861961">06 30 86 19 61</a></span>
-        <span>✉️ <a href="mailto:baptiste.marliere@outlook.fr">baptiste.marliere@outlook.fr</a></span>
-        <span>📍 Mecquignies (59) – Permis B, véhiculé</span>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <img src="Photo de profil.jpg" alt="Photo de Baptiste Marlière">
-    </div>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Ambient Animated Aurora & Mesh Background -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
   </div>
-</header>
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
-<nav>
-  <div class="nav-inner">
-    <div style="font-weight:700; font-size:0.95rem; color:var(--primary);">BM</div>
-    <ul>
-      <li><a href="#apropos">À propos</a></li>
-      <li><a href="#apporter">Ce que j'apporte</a></li>
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#experiences">Expériences</a></li>
-      <li><a href="#formation">Formation</a></li>
-      <li><a href="#interets">Intérêts</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+  <!-- Floating Glass Navbar -->
+  <div class="navbar-wrapper">
+    <nav class="navbar" id="navbar" aria-label="Navigation principale">
+      <a href="#top" class="nav-brand">
+        <span class="nav-logo-badge">BM</span>
+        <span>Baptiste Marlière</span>
+      </a>
 
-<main>
-  <div class="container">
-
-    <!-- À PROPOS -->
-    <section id="apropos">
-      <h3>À propos</h3>
-      <div class="grid-2">
-        <div>
-          <p>Actuellement en Licence 2 de gestion à l'IAE de Valenciennes, je m'oriente vers une L3 Management des Organisations en alternance pour 2026-2027. Mes expériences variées (Cabinet RH, parkings Indigo, entrepôt Decathlon EDC, et bénévolat associatif) m'ont donné une vision concrète et polyvalente du monde professionnel.</p>
-          <p style="margin-top:10px;">Curieux et impliqué, j'ai développé de A à Z le site web et la boutique e-commerce du club de natation Les Albatros (<a href="https://www.cn-albatros.fr" target="_blank">cn-albatros.fr</a>), alliant gestion de projet, création de contenu et outils numériques dans un projet réel.</p>
-        </div>
-        <div>
-          <div class="chips">
-            <span class="chip">Alternant en gestion polyvalent</span>
-            <span class="chip">Développement web & e-commerce</span>
-            <span class="chip">RH & recrutement</span>
-            <span class="chip">Relation client & logistique</span>
-            <span class="chip">Outils numériques & IA</span>
-          </div>
-          <div style="margin-top:14px; font-size:0.88rem; color:var(--muted);">
-            Disponible en alternance à partir de septembre 2026 (rythme 2j école / 3j entreprise). Sérieux, autonome, et motivé pour m'investir sur la durée.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CE QUE J'APPORTE -->
-    <section id="apporter">
-      <h3>Ce que je peux apporter à votre entreprise</h3>
-      <p style="margin-bottom:10px; font-size:0.9rem;">En alternance, mon objectif est de contribuer concrètement à votre organisation : fiabilité opérationnelle, outils numériques, et capacité à mener des projets de A à Z.</p>
-      <ul style="margin-left:16px; font-size:0.88rem;">
-        <li><strong>Gestion de projet web :</strong> conception, mise en ligne et maintenance d'un site e-commerce complet (vitrine + boutique + commandes).</li>
-        <li><strong>Recrutement & RH :</strong> sourcing, tri de candidatures, entretiens téléphoniques, job dating, tableaux de bord RH (Flatchr, LinkedIn Recruiter, Indeed).</li>
-        <li><strong>Relation client & terrain :</strong> accueil, gestion des situations de premier niveau, communication directe (expériences Indigo, Decathlon, bénévolat).</li>
-        <li><strong>Outils numériques :</strong> Excel avancé, Canva, montage vidéo, IA et automatisation de tâches, plateformes de vente en ligne.</li>
-        <li><strong>Communication & contenus :</strong> rédaction de posts LinkedIn, création de visuels (affiches, flyers), gestion de la communication d'un club sportif.</li>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#apropos" class="active">Profil</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#experiences">Expériences</a></li>
+        <li><a href="#formation">Formation</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-    </section>
 
-    <!-- COMPÉTENCES -->
-    <section id="competences">
-      <h3>Compétences</h3>
-      <div class="skills-columns">
-        <div class="skills-block">
-          <h4>💼 RH & Recrutement</h4>
-          <ul>
-            <li>Sourcing : LinkedIn Recruiter, Indeed, CVthèques</li>
-            <li>Tri et analyse de candidatures (GPEC)</li>
-            <li>Entretiens téléphoniques de préqualification</li>
-            <li>Organisation de job dating</li>
-            <li>Tableaux de bord RH / ATS (Flatchr)</li>
-            <li>Communication marque employeur (LinkedIn)</li>
-          </ul>
-        </div>
-        <div class="skills-block">
-          <h4>🌐 Web & e-commerce</h4>
-          <ul>
-            <li>Création de sites web vitrine (HTML/CSS)</li>
-            <li>Développement d'une boutique e-commerce complète</li>
-            <li>Gestion de catalogue produits (visuels, prix, commandes)</li>
-            <li>Maintenance et mise à jour de contenu</li>
-            <li>Référencement et communication digitale</li>
-          </ul>
-        </div>
-        <div class="skills-block">
-          <h4>💻 Outils numériques</h4>
-          <ul>
-            <li>Excel, Word, PowerPoint – niveau avancé</li>
-            <li>Canva – visuels, affiches, flyers</li>
-            <li>Montage vidéo (événements, contenus)</li>
-            <li>Outils d'IA et automatisation de tâches</li>
-            <li>Plateformes de vente en ligne</li>
-          </ul>
-        </div>
-        <div class="skills-block">
-          <h4>🤝 Terrain & relation client</h4>
-          <ul>
-            <li>Accueil et assistance des usagers (Indigo)</li>
-            <li>Gestion logistique en entrepôt (Decathlon EDC)</li>
-            <li>Surveillance et sécurité de site</li>
-            <li>Coordination bénévoles et encadrants (club sportif)</li>
-            <li>Français natif · Anglais intermédiaire</li>
-          </ul>
-        </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème (Sombre / Clair)" aria-label="Changer le thème">
+          ☀️
+        </button>
+        <a href="#contact" class="nav-cta">Me contacter</a>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir le menu">
+          ☰
+        </button>
       </div>
-    </section>
-
-    <!-- PROJETS (fusionnés) -->
-    <section id="projets">
-      <h3>Projets & réalisations</h3>
-      <p style="margin-bottom:14px; font-size:0.9rem; color:var(--muted);">Projets concrets menés en parallèle de mes études, illustrant ma capacité à gérer un projet de A à Z — conception, développement, communication et suivi.</p>
-      <div class="projects-grid">
-
-        <!-- Projet principal mis en avant -->
-        <article class="project-card featured" style="grid-column: 1 / -1;">
-          <div class="project-tagline highlight">⭐ Projet principal – Réalisation complète</div>
-          <div class="project-title">Site web & boutique e-commerce – Club Les Albatros</div>
-          <p class="project-desc">
-            Développement complet du site vitrine et de la boutique e-commerce du club de natation Les Albatros (<a href="https://www.cn-albatros.fr" target="_blank">cn-albatros.fr</a>). Projet mené de A à Z : conception, développement, mise en ligne, gestion du catalogue et suivi continu.
-          </p>
-          <ul>
-            <li><strong>Site vitrine :</strong> présentation du club, infos pratiques, équipes, actualités et événements.</li>
-            <li><strong>Boutique e-commerce :</strong> catalogue produits complet (visuels, prix, descriptions), système de commandes en ligne pour les adhérents.</li>
-            <li>Création de tous les contenus (textes, visuels, photos produits) en cohérence avec l'image du club.</li>
-            <li>Maintenance régulière, mises à jour et ajustements selon les besoins du bureau du club.</li>
-            <li>Communication digitale associée : réseaux sociaux, affiches, newsletters.</li>
-          </ul>
-          <div class="project-links">
-            <a class="project-link-pill primary-pill" href="https://www.cn-albatros.fr" target="_blank">🌐 Voir le site du club</a>
-            <a class="project-link-pill" href="https://boutique-cn-albatros.lovable.app/" target="_blank">🛒 Accéder à la boutique</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-tagline">Projet RH</div>
-          <div class="project-title">Recrutement & job dating – BDL Experts</div>
-          <p class="project-desc">Participation complète à un processus de recrutement au sein d'un cabinet d'expertise comptable, de la définition des besoins à l'organisation d'un job dating alternants.</p>
-          <ul>
-            <li>Sourcing actif (LinkedIn Recruiter, CVthèques, Indeed)</li>
-            <li>Tri et analyse des candidatures (matching profil / poste)</li>
-            <li>Entretiens téléphoniques de préqualification</li>
-            <li>Organisation et animation du jour J</li>
-          </ul>
-          <div class="badges" style="margin-top:8px;">
-            <span class="badge">RH</span>
-            <span class="badge">Sourcing</span>
-            <span class="badge">Flatchr / ATS</span>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-tagline">Communication</div>
-          <div class="project-title">Marque employeur & contenus LinkedIn – BDL Experts</div>
-          <p class="project-desc">Contribution à la stratégie de marque employeur du cabinet : rédaction de posts LinkedIn mettant en valeur la culture d'entreprise, les actions RSE et la vie du cabinet.</p>
-          <ul>
-            <li>Proposition d'angles de communication (vie d'équipe, engagements)</li>
-            <li>Rédaction de posts et choix des visuels (Canva)</li>
-            <li>Suivi des indicateurs de portée</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-tagline">Projet personnel</div>
-          <div class="project-title">CV web / Portfolio – ce site</div>
-          <p class="project-desc">Conception et mise en ligne de ce site portfolio personnel pour présenter mon parcours, mes compétences et mes projets de manière moderne et interactive.</p>
-          <ul>
-            <li>Design complet en HTML/CSS (sans framework)</li>
-            <li>Formulaire de contact connecté à EmailJS (double envoi automatique)</li>
-            <li>Animations et transitions CSS/JS pour l'UX</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-tagline">Création de contenus</div>
-          <div class="project-title">Visuels & vidéos – Club Les Albatros</div>
-          <p class="project-desc">Création régulière de supports de communication pour le club : affiches, flyers, et montages vidéo pour valoriser les compétitions et événements.</p>
-          <ul>
-            <li>Affiches et flyers événements (Canva)</li>
-            <li>Montage vidéo de compétitions et soirées du club</li>
-            <li>Gestion du planning de communication</li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- EXPÉRIENCES -->
-    <section id="experiences">
-      <h3>Expériences professionnelles & bénévolat</h3>
-
-      <div class="experience-item">
-        <div class="exp-header">
-          <div class="exp-title">Agent d'exploitation – Indigo (parkings)</div>
-          <div class="exp-meta">Mai 2026 – Aujourd'hui · Valenciennes</div>
-        </div>
-        <div class="exp-meta" style="margin-bottom:6px;">Gestion opérationnelle & relation client</div>
-        <ul>
-          <li>Accueil, assistance et information des usagers dans les parkings.</li>
-          <li>Réponse aux appels interphone (piétons et automobilistes aux barrières).</li>
-          <li>Surveillance des parcs et contrôle du respect des règles.</li>
-          <li>Entretien et nettoyage quotidien des équipements et ouvrages.</li>
-          <li>Remontée des informations en cas de panne ou d'incident.</li>
-          <li>Gestion des situations de premier niveau et relation client.</li>
-        </ul>
-        <div class="badges" style="margin-top:8px;">
-          <span class="badge">Relation client</span>
-          <span class="badge">Gestion opérationnelle</span>
-          <span class="badge">Sécurité de site</span>
-        </div>
-      </div>
-
-      <div class="experience-item">
-        <div class="exp-header">
-          <div class="exp-title">Magasinier – Decathlon EDC</div>
-          <div class="exp-meta">Mai 2026 – Aujourd'hui · Rouvignies</div>
-        </div>
-        <div class="exp-meta" style="margin-bottom:6px;">Logistique & entrepôt</div>
-        <ul>
-          <li>Déchargement de camions et de conteneurs en entrepôt logistique.</li>
-          <li>Manutention et gestion des flux de marchandises.</li>
-          <li>Respect des consignes de sécurité en entrepôt.</li>
-          <li>Travail en équipe dans un environnement logistique à fort volume.</li>
-        </ul>
-        <div class="badges" style="margin-top:8px;">
-          <span class="badge">Logistique</span>
-          <span class="badge">Travail d'équipe</span>
-          <span class="badge">Rigueur</span>
-        </div>
-      </div>
-
-      <div class="experience-item">
-        <div class="exp-header">
-          <div class="exp-title">Chargé de recrutement & marque employeur – BDL Experts</div>
-          <div class="exp-meta">Janvier & Juin 2026 · Valenciennes</div>
-        </div>
-        <div class="exp-meta" style="margin-bottom:6px;">Cabinet d'expertise comptable, audit & conseil</div>
-        <ul>
-          <li>Participation complète au processus de recrutement (stagiaires, alternants, profils juniors).</li>
-          <li>Sourcing actif : LinkedIn Recruiter, site carrière, écoles partenaires, CVthèques (Meteojob, Hellowork).</li>
-          <li>Tri et analyse des candidatures (matching profil/poste, critères GPEC).</li>
-          <li>Conduite d'entretiens téléphoniques de préqualification.</li>
-          <li>Organisation et participation à un job dating alternants.</li>
-          <li>Mise à jour des tableaux de bord RH et analyse des canaux (ATS Flatchr).</li>
-          <li>Contribution à la communication RH sur LinkedIn (culture d'entreprise, RSE).</li>
-        </ul>
-        <div class="badges" style="margin-top:8px;">
-          <span class="badge">Recrutement</span>
-          <span class="badge">Marque employeur</span>
-          <span class="badge">Flatchr / ATS</span>
-          <span class="badge">LinkedIn Recruiter</span>
-        </div>
-      </div>
-
-      <div class="experience-item">
-        <div class="exp-header">
-          <div class="exp-title">Stagiaire – SNCF Voyageurs</div>
-          <div class="exp-meta">Juin 2025 · Lille</div>
-        </div>
-        <div class="exp-meta" style="margin-bottom:6px;">Transport de voyageurs – vision transversale</div>
-        <ul>
-          <li>Observation et participation dans plusieurs services : approvisionnement, marketing, comptabilité, contrôle de gestion.</li>
-          <li>Suivi des commandes, gestion des stocks et analyse de la satisfaction client.</li>
-          <li>Découverte des processus comptables (factures, ERP) et du suivi budgétaire via tableaux de bord.</li>
-        </ul>
-        <div class="badges" style="margin-top:8px;">
-          <span class="badge">Vision transversale</span>
-          <span class="badge">Contrôle de gestion</span>
-          <span class="badge">Marketing</span>
-        </div>
-      </div>
-
-      <div class="experience-item">
-        <div class="exp-header">
-          <div class="exp-title">Bénévole – Club de natation Les Albatros</div>
-          <div class="exp-meta">2021 – Aujourd'hui · Aulnoye-Aymeries</div>
-        </div>
-        <div class="exp-meta" style="margin-bottom:6px;">Engagement sportif et associatif – 5 ans</div>
-        <ul>
-          <li>Développement du site web vitrine et de la boutique e-commerce du club.</li>
-          <li>Soutien à l'organisation de compétitions, soirées et événements du club.</li>
-          <li>Communication : affiches, planning, gestion des inscriptions, réseaux sociaux.</li>
-          <li>Accueil des familles et coordination avec les encadrants.</li>
-        </ul>
-        <div class="badges" style="margin-top:8px;">
-          <span class="badge">Organisation d'événements</span>
-          <span class="badge">Développement web</span>
-          <span class="badge">Communication</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMATION -->
-    <section id="formation">
-      <h3>Formation</h3>
-      <div class="edu-item">
-        <div class="edu-header">
-          <div class="edu-title">Licence 3 de Gestion parcours Management des Organisations (en cours)</div>
-          <div class="edu-meta">2026-2027 · IAE de Valenciennes</div>
-        </div>
-        <ul>
-          <li>Parcours en alternance (2j école / 3j entreprise).</li>
-          <li>Spécialisation : gestion, organisation, management et outils numériques.</li>
-        </ul>
-      </div>
-      <div class="edu-item">
-        <div class="edu-header">
-          <div class="edu-title">Licence 2 de Gestion</div>
-          <div class="edu-meta">2024-2026 · IAE de Valenciennes</div>
-        </div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-header">
-          <div class="edu-title">Baccalauréat général</div>
-          <div class="edu-meta">2021-2024 · Lycée des Nerviens</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTÉRÊTS -->
-    <section id="interets">
-      <h3>Centres d'intérêt</h3>
-      <div class="interests-list">
-        <span class="interest">🏋️ Musculation</span>
-        <span class="interest">🏊 Natation (club depuis 10 ans)</span>
-        <span class="interest">🤖 Technologies & IA</span>
-        <span class="interest">🛒 Plateformes de vente en ligne</span>
-        <span class="interest">🎬 Vlogs & montage vidéo</span>
-        <span class="interest">🎵 Musique</span>
-        <span class="interest">💻 Outils numériques</span>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <h3>Me contacter</h3>
-      <div class="contact-grid">
-        <div>
-          <p style="font-size:0.9rem; margin-bottom:12px;">Vous recherchez un alternant en gestion polyvalent, capable de mener des projets web concrets et motivé pour s'investir dans vos équipes ? Contactez-moi pour échanger.</p>
-          <ul style="list-style:none; font-size:0.9rem; line-height:2;">
-            <li>📞 <a href="tel:+33630861961">06 30 86 19 61</a></li>
-            <li>✉️ <a href="mailto:baptiste.marliere@outlook.fr">baptiste.marliere@outlook.fr</a></li>
-            <li>📍 407 rue du Timon, 59570 Mecquignies, France</li>
-            <li>🚗 Permis B – véhiculé</li>
-            <li>🔗 <a href="https://www.linkedin.com/in/baptiste-mrlr" target="_blank" rel="noopener noreferrer">Mon profil LinkedIn</a></li>
-          </ul>
-          <p style="font-size:0.82rem; color:var(--muted); margin-top:10px;">Références disponibles sur demande.</p>
-        </div>
-        <div>
-          <form id="contact-form">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="from_name" required>
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="from_email" required>
-
-            <label for="sujet">Sujet</label>
-            <input type="text" id="sujet" name="subject" placeholder="Proposition d'alternance, collaboration..." required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Bonjour Baptiste..." required></textarea>
-
-            <button type="submit" id="submit-btn">Envoyer le message</button>
-            <p id="contact-feedback" style="font-size:0.85rem; margin-top:8px;"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
+    </nav>
   </div>
-</main>
 
-<footer>
-  © <span id="year"></span> – Baptiste Marlière – Portfolio & CV web
-</footer>
+  <!-- MAIN CONTENT -->
+  <main id="top">
+    <div class="container">
 
-<script>
-  // Année
-  document.getElementById('year').textContent = new Date().getFullYear();
+      <!-- ====================================================================
+           HERO SECTION
+           ==================================================================== -->
+      <section class="hero-section">
+        <div class="hero-grid">
+          <div class="hero-content reveal is-visible">
+            <div class="status-pill">
+              <span class="pulse-dot"></span>
+              <span>Licence 3 MDO (2026–2027) · IAE de Valenciennes</span>
+            </div>
 
-  // Scroll fluide ancres
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+            <h1 class="hero-title">
+              Baptiste <span class="gradient-text">Marlière</span>
+            </h1>
+
+            <div class="hero-subtitle-wrap">
+              <span>Étudiant en Gestion ·</span>
+              <span class="typewriter-text" id="typewriter">Management des Organisations</span>
+            </div>
+
+            <p class="hero-description">
+              Étudiant en Gestion, je poursuis en 2026–2027 une <strong>Licence 3 Management des Organisations (MDO)</strong> à l'IAE de Valenciennes. Sérieux, autonome et impliqué, je mets mes compétences en gestion de projet, création de sites web &amp; e-commerce, recrutement RH et opérations terrain au service d'une structure dynamique.
+            </p>
+
+            <div class="hero-tags">
+              <span class="hero-tag">🎯 Management des Organisations</span>
+              <span class="hero-tag">🌐 Création Web &amp; E-commerce</span>
+              <span class="hero-tag">💼 Sourcing &amp; Recrutement RH</span>
+              <span class="hero-tag">🤖 Outils Numériques, IA &amp; Canva</span>
+              <span class="hero-tag">🚗 Permis B – Véhiculé</span>
+            </div>
+
+            <div class="hero-buttons">
+              <a href="#contact" class="btn btn-gradient">
+                <span>✉️ Me contacter</span>
+              </a>
+              <a href="https://baptiste-mrlr.github.io/CV/CV%202026%20-%20Baptiste%20Marli%C3%A8re.pdf" target="_blank" rel="noopener" class="btn btn-glass">
+                <span>📄 Télécharger mon CV</span>
+              </a>
+              <a href="tel:+33630861961" class="btn btn-glass">
+                <span>📞 Appeler</span>
+              </a>
+            </div>
+
+            <div class="hero-quick-contact">
+              <button type="button" class="contact-chip" onclick="copyText('06 30 86 19 61', 'Numéro de téléphone copié !')" title="Cliquer pour copier">
+                📞 06 30 86 19 61
+              </button>
+              <button type="button" class="contact-chip" onclick="copyText('baptiste.marliere@outlook.fr', 'Adresse email copiée !')" title="Cliquer pour copier">
+                ✉️ baptiste.marliere@outlook.fr
+              </button>
+              <span class="contact-chip" style="cursor: default;">
+                📍 59570, Mecquignies
+              </span>
+            </div>
+          </div>
+
+          <!-- Profile Glass Card -->
+          <div class="hero-visual reveal is-visible">
+            <div class="floating-pill top-left">
+              <span>🎓</span>
+              <span>IAE Valenciennes · L3 MDO</span>
+            </div>
+
+            <div class="glass-card profile-glass-frame tilt-card">
+              <div class="avatar-ring-wrap">
+                <div class="avatar-inner">
+                  <img src="Photo de profil.jpg" onerror="this.onerror=null;this.src='https://baptiste-mrlr.github.io/CV/Photo%20de%20profil.jpg';" alt="Photo de Baptiste Marlière">
+                </div>
+              </div>
+
+              <div class="profile-card-name">Baptiste Marlière</div>
+              <div class="profile-card-role">Gestion · Projets Web · RH &amp; Opérations</div>
+
+              <div class="profile-mini-badges">
+                <span class="mini-badge">Sérieux</span>
+                <span class="mini-badge">Autonome</span>
+                <span class="mini-badge">Impliqué</span>
+              </div>
+
+              <div class="profile-card-footer">
+                <div>
+                  <strong>L3 MDO</strong>
+                  <span>2026–2027</span>
+                </div>
+                <div>
+                  <strong>5+ ans</strong>
+                  <span>Bénévolat &amp; Web</span>
+                </div>
+                <div>
+                  <strong>Permis B</strong>
+                  <span>Véhiculé</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-pill bottom-right">
+              <span>🛒</span>
+              <span>E-commerce : cn-albatros.fr</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           KEY METRICS GLASS STRIP
+           ==================================================================== -->
+      <div class="stats-strip reveal">
+        <div class="glass-card stat-card">
+          <div class="stat-number">L3 MDO</div>
+          <div class="stat-label">Management des Organisations · IAE</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Expériences (RH, Logistique, Exploitation)</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Site vitrine &amp; boutique créés de A à Z</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number">2021–26</div>
+          <div class="stat-label">Engagement associatif actif (Les Albatros)</div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           SECTION 1: À PROPOS & CE QUE J'APPORTE (BENTO GRID)
+           ==================================================================== -->
+      <section id="apropos" class="section-block reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">✦ Profil &amp; Valeur ajoutée</span>
+          <h2 class="section-title">Un profil hybride entre gestion, terrain et digital</h2>
+          <p class="section-subtitle">
+            Allier la rigueur du management des organisations à la maîtrise concrète des outils numériques, du recrutement RH et de la relation client.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="glass-card bento-card bento-col-7">
+            <div>
+              <div class="bento-icon">🧭</div>
+              <h3>Mon parcours &amp; ma démarche</h3>
+              <p style="margin-top: 10px;">
+                Titulaire d'une Licence 2 de Gestion et actuellement en <strong>Licence 3 Management des Organisations (MDO)</strong> à l'IAE de Valenciennes (2026–2027), j'ai construit un profil polyvalent grâce à des expériences exigeantes sur le terrain comme au bureau : recrutement et marque employeur chez <strong>BDL Experts</strong>, exploitation et relation usagers chez <strong>Indigo</strong>, logistique à fort volume chez <strong>Decathlon EDC</strong>, et découverte transversale chez <strong>SNCF Voyageurs</strong>.
+              </p>
+              <p style="margin-top: 10px;">
+                Passionné par le numérique, j'ai également conçu et déployé de A à Z le site web vitrine et la boutique en ligne du club de natation <strong>Les Albatros</strong> (<a href="https://www.cn-albatros.fr" target="_blank" rel="noopener">cn-albatros.fr</a>), démontrant ma capacité à piloter un projet complet en autonomie.
+              </p>
+            </div>
+            <div class="tag-row" style="margin-top: 10px;">
+              <span class="glass-tag">Polyvalence opérationnelle</span>
+              <span class="glass-tag">Gestion de projet A à Z</span>
+              <span class="glass-tag">Esprit d'équipe</span>
+              <span class="glass-tag">Adaptabilité rapide</span>
+            </div>
+          </div>
+
+          <div class="glass-card bento-card bento-col-5">
+            <div>
+              <div class="bento-icon">⚡</div>
+              <h3>Ce que j'apporte à votre structure</h3>
+              <ul class="value-list">
+                <li>
+                  <span class="value-check">✔</span>
+                  <span><strong>Projets Web &amp; E-commerce :</strong> création de sites vitrines, gestion de boutique en ligne, fiches produits et suivi des commandes.</span>
+                </li>
+                <li>
+                  <span class="value-check">✔</span>
+                  <span><strong>Recrutement &amp; RH :</strong> sourcing actif (LinkedIn Recruiter, Indeed, CVthèques), tri GPEC, préqualifications et suivi ATS (Flatchr).</span>
+                </li>
+                <li>
+                  <span class="value-check">✔</span>
+                  <span><strong>Communication &amp; Contenus :</strong> visuels Canva (affiches, flyers), montage vidéo, posts LinkedIn RSE &amp; marque employeur.</span>
+                </li>
+                <li>
+                  <span class="value-check">✔</span>
+                  <span><strong>Opérations &amp; Relation Client :</strong> accueil, résolution d'incidents de 1er niveau, sécurité de site et rigueur logistique.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SECTION 2: COMPÉTENCES & LANGUES
+           ==================================================================== -->
+      <section id="competences" class="section-block reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">✦ Savoir-faire &amp; Outils</span>
+          <h2 class="section-title">Compétences clés</h2>
+          <p class="section-subtitle">
+            Filtrez par domaine pour explorer mes compétences opérationnelles, digitales et managériales issues de mon CV.
+          </p>
+        </div>
+
+        <div class="filter-bar" role="tablist" aria-label="Filtrer les compétences">
+          <button class="filter-btn active" data-skill-filter="all">Toutes les compétences</button>
+          <button class="filter-btn" data-skill-filter="rh">💼 RH &amp; Recrutement</button>
+          <button class="filter-btn" data-skill-filter="web">🌐 Web, Créa &amp; Médias</button>
+          <button class="filter-btn" data-skill-filter="outils">💻 Bureautique &amp; IA</button>
+          <button class="filter-btn" data-skill-filter="terrain">🤝 Relation Client &amp; Opérations</button>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Bloc RH -->
+          <div class="glass-card skill-category-card" data-skill-cat="rh">
+            <div class="skill-card-header">
+              <div class="bento-icon" style="margin-bottom:0;">💼</div>
+              <div>
+                <h4>RH, Sourcing &amp; Marque Employeur</h4>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Processus complet de recrutement &amp; suivi ATS</span>
+              </div>
+            </div>
+            <div class="skill-items">
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Sourcing &amp; Analyse de candidatures (critères GPEC)</span>
+                  <span class="skill-level-tag">Maîtrisé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Indeed, LinkedIn Recruiter &amp; CVthèques</span>
+                  <span class="skill-level-tag">Maîtrisé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Conduite d'entretiens téléphoniques &amp; Job Dating</span>
+                  <span class="skill-level-tag">Opérationnel</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Tableaux de bord RH / ATS (Flatchr) &amp; Communication RH</span>
+                  <span class="skill-level-tag">Maîtrisé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="86%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloc Web & Création -->
+          <div class="glass-card skill-category-card" data-skill-cat="web">
+            <div class="skill-card-header">
+              <div class="bento-icon" style="margin-bottom:0;">🌐</div>
+              <div>
+                <h4>Création Web, E-commerce &amp; Contenus</h4>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Développement vitrine, boutique en ligne &amp; design</span>
+              </div>
+            </div>
+            <div class="skill-items">
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Création de sites web vitrine &amp; e-commerce</span>
+                  <span class="skill-level-tag">Avancé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="94%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Canva : Affiches, flyers, visuels &amp; supports réseaux</span>
+                  <span class="skill-level-tag">Avancé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Montage vidéo &amp; création de contenus (Vlogs, événements)</span>
+                  <span class="skill-level-tag">Maîtrisé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Gestion de catalogue en ligne &amp; plateformes de vente</span>
+                  <span class="skill-level-tag">Avancé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloc Bureautique & IA -->
+          <div class="glass-card skill-category-card" data-skill-cat="outils">
+            <div class="skill-card-header">
+              <div class="bento-icon" style="margin-bottom:0;">💻</div>
+              <div>
+                <h4>Bureautique, Gestion &amp; Technologies IA</h4>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Productivité, reporting et outils modernes</span>
+              </div>
+            </div>
+            <div class="skill-items">
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Word, Excel, PowerPoint (Tableaux de bord &amp; suivi)</span>
+                  <span class="skill-level-tag">Avancé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Outils d'IA générative &amp; productivité numérique</span>
+                  <span class="skill-level-tag">Avancé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="94%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Suivi budgétaire, facturation &amp; indicateurs de gestion</span>
+                  <span class="skill-level-tag">Opérationnel</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloc Terrain & Relation Client -->
+          <div class="glass-card skill-category-card" data-skill-cat="terrain">
+            <div class="skill-card-header">
+              <div class="bento-icon" style="margin-bottom:0;">🤝</div>
+              <div>
+                <h4>Relation Client, Logistique &amp; Sécurité</h4>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Expérience terrain solide et sens des responsabilités</span>
+              </div>
+            </div>
+            <div class="skill-items">
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Relation client, accueil &amp; assistance usagers</span>
+                  <span class="skill-level-tag">Avancé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Surveillance &amp; sécurité de site / gestion d'incidents</span>
+                  <span class="skill-level-tag">Maîtrisé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-row-top">
+                  <span>Logistique d'entrepôt, gestion des flux &amp; travail d'équipe</span>
+                  <span class="skill-level-tag">Maîtrisé</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Langues Bar -->
+        <div class="glass-card languages-strip">
+          <div>
+            <h4 style="font-size:1.02rem; margin-bottom:2px;">🌍 Langues pratiquées</h4>
+            <p style="font-size:0.83rem; color:var(--text-secondary);">Communication professionnelle écrite et orale</p>
+          </div>
+          <div class="lang-pills">
+            <div class="lang-pill">
+              <span>🇫🇷</span>
+              <span><strong>Français</strong> — Langue maternelle (Natif)</span>
+            </div>
+            <div class="lang-pill">
+              <span>🇬🇧</span>
+              <span><strong>Anglais</strong> — Niveau intermédiaire</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SECTION 3: PROJETS & RÉALISATIONS
+           ==================================================================== -->
+      <section id="projets" class="section-block reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">✦ Portfolio &amp; Cas concrets</span>
+          <h2 class="section-title">Projets &amp; réalisations</h2>
+          <p class="section-subtitle">
+            Des réalisations concrètes menées en autonomie ou en entreprise, démontrant ma capacité à transformer un besoin en résultat opérationnel.
+          </p>
+        </div>
+
+        <div class="projects-bento">
+          <!-- Projet Phare : Les Albatros -->
+          <article class="glass-card project-glass-card featured-project tilt-card">
+            <div class="featured-layout">
+              <div>
+                <div class="project-badge-row">
+                  <span class="project-category-pill">⭐ Projet Phare · Web &amp; E-commerce</span>
+                  <span class="glass-tag">En production</span>
+                </div>
+                <h4>Site web vitrine &amp; boutique en ligne – Club Les Albatros</h4>
+                <p>
+                  Conception, développement et gestion complète du portail digital et de la boutique e-commerce du club de natation d'Aulnoye-Aymeries (<a href="https://www.cn-albatros.fr" target="_blank" rel="noopener">cn-albatros.fr</a>).
+                </p>
+                <ul class="project-bullets">
+                  <li><strong>Site vitrine complet :</strong> présentation du club, horaires, groupes, inscriptions, actualités et calendrier des compétitions.</li>
+                  <li><strong>Boutique e-commerce intégrée :</strong> création du catalogue d'équipements personnalisés, gestion des visuels, tarifs et commandes adhérents.</li>
+                  <li><strong>Identité visuelle &amp; contenus :</strong> création des bannières, photos produits, affiches et supports de communication.</li>
+                  <li><strong>Maintenance &amp; évolution :</strong> administration continue en lien direct avec le bureau et les encadrants du club.</li>
+                </ul>
+                <div class="hero-buttons" style="margin-bottom:0; margin-top:10px;">
+                  <a href="https://www.cn-albatros.fr" target="_blank" rel="noopener" class="btn btn-gradient" style="padding:10px 20px; font-size:0.85rem;">
+                    🌐 Voir le site du club
+                  </a>
+                  <a href="https://boutique-cn-albatros.lovable.app/" target="_blank" rel="noopener" class="btn btn-glass" style="padding:10px 20px; font-size:0.85rem;">
+                    🛒 Accéder à la boutique
+                  </a>
+                </div>
+              </div>
+
+              <!-- Interactive Browser Mockup -->
+              <div class="browser-mockup">
+                <div class="browser-topbar">
+                  <div class="browser-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="browser-url">https://boutique-cn-albatros.lovable.app/</div>
+                </div>
+                <div class="browser-body">
+                  <div class="mockup-Preview-card">
+                    <div style="font-size:0.75rem; color:var(--accent-blue); font-weight:700; text-transform:uppercase;">Club de Natation Les Albatros</div>
+                    <div style="font-size:1.05rem; font-weight:800; margin:4px 0;">Vitrine Digitale &amp; E-Shop Officiel</div>
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">Architecture complète : informations adhérents, inscriptions, événements et commande d'équipements en ligne.</div>
+                  </div>
+                  <div class="mockup-grid">
+                    <div class="mockup-stat">
+                      <strong>A à Z</strong>
+                      <span>Conception &amp; Design</span>
+                    </div>
+                    <div class="mockup-stat">
+                      <strong>E-Shop</strong>
+                      <span>Catalogue &amp; Commandes</span>
+                    </div>
+                    <div class="mockup-stat">
+                      <strong>100%</strong>
+                      <span>Responsive Mobile</span>
+                    </div>
+                    <div class="mockup-stat">
+                      <strong>5+ ans</strong>
+                      <span>Suivi &amp; Communication</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projet 2 : Recrutement BDL -->
+          <article class="glass-card project-glass-card tilt-card">
+            <div>
+              <div class="project-badge-row">
+                <span class="project-category-pill">💼 Ressources Humaines</span>
+                <span class="glass-tag">BDL Experts</span>
+              </div>
+              <h4>Campagne de recrutement &amp; Job Dating Alternants</h4>
+              <p>
+                Participation active au cycle complet de recrutement pour des profils stagiaires, alternants et juniors en cabinet d'expertise comptable et d'audit.
+              </p>
+              <ul class="project-bullets">
+                <li>Sourcing multicanal : LinkedIn Recruiter, Indeed, CVthèques, écoles partenaires.</li>
+                <li>Tri, sélection des CV (critères GPEC) et entretiens téléphoniques de préqualification.</li>
+                <li>Co-organisation d'un Job Dating dédié aux alternants et suivi dans l'ATS Flatchr.</li>
+              </ul>
+            </div>
+            <div class="tag-row">
+              <span class="glass-tag">LinkedIn Recruiter</span>
+              <span class="glass-tag">Flatchr ATS</span>
+              <span class="glass-tag">Préqualification</span>
+            </div>
+          </article>
+
+          <!-- Projet 3 : Marque Employeur LinkedIn -->
+          <article class="glass-card project-glass-card tilt-card">
+            <div>
+              <div class="project-badge-row">
+                <span class="project-category-pill">📣 Communication RH</span>
+                <span class="glass-tag">BDL Experts</span>
+              </div>
+              <h4>Stratégie Marque Employeur &amp; RSE sur LinkedIn</h4>
+              <p>
+                Valorisation de la culture d'entreprise, de la vie d'équipe et des engagements RSE du cabinet sur les réseaux professionnels.
+              </p>
+              <ul class="project-bullets">
+                <li>Conception de publications engageantes mettant en avant les collaborateurs.</li>
+                <li>Création de supports visuels adaptés à la charte graphique sur Canva.</li>
+                <li>Analyse des canaux d'acquisition et suivi de la visibilité des campagnes RH.</li>
+              </ul>
+            </div>
+            <div class="tag-row">
+              <span class="glass-tag">Marque employeur</span>
+              <span class="glass-tag">Canva</span>
+              <span class="glass-tag">RSE &amp; LinkedIn</span>
+            </div>
+          </article>
+
+          <!-- Projet 4 : Contenus Visuels & Montage Vidéo -->
+          <article class="glass-card project-glass-card tilt-card">
+            <div>
+              <div class="project-badge-row">
+                <span class="project-category-pill">🎬 Création Visuelle &amp; Médias</span>
+                <span class="glass-tag">Les Albatros &amp; Vlogs</span>
+              </div>
+              <h4>Création d'affiches, flyers &amp; montages vidéo</h4>
+              <p>
+                Production régulière de supports visuels imprimés et numériques pour promouvoir les compétitions, soirées et temps forts associatifs.
+              </p>
+              <ul class="project-bullets">
+                <li>Conception d'affiches et flyers événementiels percutants avec Canva.</li>
+                <li>Captation et montage vidéo dynamique (compétitions, événements, vlogs).</li>
+                <li>Planification de la communication et gestion des inscriptions.</li>
+              </ul>
+            </div>
+            <div class="tag-row">
+              <span class="glass-tag">Montage vidéo</span>
+              <span class="glass-tag">Canva</span>
+              <span class="glass-tag">Événementiel</span>
+            </div>
+          </article>
+
+          <!-- Projet 5 : Portfolio Web Moderne -->
+          <article class="glass-card project-glass-card tilt-card">
+            <div>
+              <div class="project-badge-row">
+                <span class="project-category-pill">✨ Développement Front-End</span>
+                <span class="glass-tag">Projet Personnel</span>
+              </div>
+              <h4>Portfolio Interactif Glassmorphism</h4>
+              <p>
+                Refonte complète de mon site web personnel avec effets de transparence (glassmorphism), flou optique, thème sombre/clair et animations interactives.
+              </p>
+              <ul class="project-bullets">
+                <li>Architecture HTML5 / CSS3 / JS moderne sans dépendance lourde.</li>
+                <li>Effets de lumière réactifs au curseur, filtres dynamiques et mode clair/sombre.</li>
+                <li>Formulaire de contact automatisé avec double envoi via l'API EmailJS.</li>
+              </ul>
+            </div>
+            <div class="tag-row">
+              <span class="glass-tag">HTML / CSS / JS</span>
+              <span class="glass-tag">Glassmorphism UI</span>
+              <span class="glass-tag">EmailJS</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SECTION 4: EXPÉRIENCES PROFESSIONNELLES
+           ==================================================================== -->
+      <section id="experiences" class="section-block reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">✦ Parcours terrain &amp; entreprise</span>
+          <h2 class="section-title">Expériences professionnelles &amp; associatives</h2>
+          <p class="section-subtitle">
+            Des responsabilités concrètes en exploitation, logistique, ressources humaines et vie associative.
+          </p>
+        </div>
+
+        <div class="timeline-wrapper">
+
+          <!-- Indigo -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <div class="timeline-role">Agent d'exploitation</div>
+                  <div class="timeline-company">Indigo · Valenciennes</div>
+                </div>
+                <span class="timeline-date">Mai 2026 – Aujourd'hui</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Accueil, assistance et information des usagers dans les parkings.</li>
+                <li>Réponse aux appels interphone (piétons et automobilistes aux barrières).</li>
+                <li>Surveillance des parcs et contrôle du respect des règles de sécurité.</li>
+                <li>Entretien et nettoyage quotidien des équipements et ouvrages.</li>
+                <li>Remontée des informations en cas de panne ou d'incident technique.</li>
+                <li>Gestion des situations de premier niveau et relation client en autonomie.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="glass-tag">Relation client</span>
+                <span class="glass-tag">Exploitation &amp; Sécurité</span>
+                <span class="glass-tag">Gestion d'incidents</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decathlon EDC -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <div class="timeline-role">Magasinier</div>
+                  <div class="timeline-company">Decathlon EDC · Rouvignies</div>
+                </div>
+                <span class="timeline-date">Mai 2026 – Aujourd'hui</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Déchargement de camions et de conteneurs en entrepôt logistique.</li>
+                <li>Manutention et gestion rigoureuse des flux de marchandises.</li>
+                <li>Respect strict des consignes de sécurité en entrepôt.</li>
+                <li>Travail en équipe dans un environnement logistique à fort volume.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="glass-tag">Logistique &amp; Flux</span>
+                <span class="glass-tag">Esprit d'équipe</span>
+                <span class="glass-tag">Sécurité entrepôt</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BDL Experts -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <div class="timeline-role">Chargé de recrutement &amp; Marque employeur</div>
+                  <div class="timeline-company">BDL Experts · Valenciennes</div>
+                </div>
+                <span class="timeline-date">Janvier &amp; Juin 2026</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Participation complète au processus de recrutement (stagiaires, alternants, juniors).</li>
+                <li>Sourcing actif : LinkedIn, site carrière, écoles partenaires, CVthèques.</li>
+                <li>Tri et analyse des candidatures (matching profil/poste, critères GPEC).</li>
+                <li>Conduite d'entretiens téléphoniques de préqualification.</li>
+                <li>Organisation et participation à un job dating alternants.</li>
+                <li>Mise à jour des tableaux de bord RH (suivi candidatures, analyse canaux via Flatchr).</li>
+                <li>Communication RH sur LinkedIn (culture d'entreprise et RSE).</li>
+              </ul>
+              <div class="tag-row">
+                <span class="glass-tag">Recrutement &amp; GPEC</span>
+                <span class="glass-tag">LinkedIn Recruiter</span>
+                <span class="glass-tag">Tableaux de bord RH / Flatchr</span>
+                <span class="glass-tag">Marque employeur</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SNCF Voyageurs -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <div class="timeline-role">Stagiaire découverte transversale</div>
+                  <div class="timeline-company">SNCF Voyageurs · Lille</div>
+                </div>
+                <span class="timeline-date">Juin 2025</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Observation et participation au sein de plusieurs pôles : approvisionnement, marketing, comptabilité et contrôle de gestion.</li>
+                <li>Suivi des commandes, gestion des stocks et analyse d'indicateurs de satisfaction client.</li>
+                <li>Découverte des processus comptables (factures, ERP) et du suivi budgétaire via tableaux de bord.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="glass-tag">Vision transversale</span>
+                <span class="glass-tag">Contrôle de gestion</span>
+                <span class="glass-tag">Approvisionnement &amp; Marketing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bénévolat Les Albatros -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <div class="timeline-role">Bénévole – Web, Communication &amp; Événementiel</div>
+                  <div class="timeline-company">Club de natation Les Albatros · Aulnoye-Aymeries</div>
+                </div>
+                <span class="timeline-date">2021 – Aujourd'hui</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Développement d'un site web vitrine et d'une boutique en ligne (<a href="https://www.cn-albatros.fr" target="_blank" rel="noopener">cn-albatros.fr</a>).</li>
+                <li>Soutien à l'organisation d'événements (compétitions, soirées du club).</li>
+                <li>Communication : création d'affiches, planning, gestion des inscriptions.</li>
+                <li>Accueil des familles et coordination avec les encadrants.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="glass-tag">Site Web &amp; E-commerce</span>
+                <span class="glass-tag">Organisation d'événements</span>
+                <span class="glass-tag">Communication associative</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SECTION 5: FORMATION & CENTRES D'INTÉRÊT
+           ==================================================================== -->
+      <section id="formation" class="section-block reveal">
+        <div class="dual-grid">
+
+          <!-- Formation -->
+          <div>
+            <div class="section-header">
+              <span class="section-eyebrow">✦ Cursus universitaire</span>
+              <h2 class="section-title">Formation</h2>
+            </div>
+
+            <div class="edu-stack">
+              <div class="glass-card edu-glass-card">
+                <span class="edu-year">2026 – 2027 · En cours</span>
+                <div class="edu-degree">Licence 3 Management des Organisations (MDO)</div>
+                <div class="edu-school">IAE de Valenciennes (UPHF)</div>
+                <p style="font-size:0.84rem; color:var(--text-secondary); margin-top:6px;">
+                  Management, organisation des structures, pilotage de projet, ressources humaines et outils numériques.
+                </p>
+              </div>
+
+              <div class="glass-card edu-glass-card">
+                <span class="edu-year">2024 – 2026</span>
+                <div class="edu-degree">Licence 2 de Gestion</div>
+                <div class="edu-school">IAE de Valenciennes (UPHF)</div>
+                <p style="font-size:0.84rem; color:var(--text-secondary); margin-top:6px;">
+                  Fondamentaux de la gestion d'entreprise, comptabilité, marketing, GRH, économie et systèmes d'information.
+                </p>
+              </div>
+
+              <div class="glass-card edu-glass-card">
+                <span class="edu-year">2021 – 2024</span>
+                <div class="edu-degree">Baccalauréat Général</div>
+                <div class="edu-school">Lycée des Nerviens · Bavay</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Centres d'intérêt -->
+          <div id="interets">
+            <div class="section-header">
+              <span class="section-eyebrow">✦ Passions &amp; Curiosité</span>
+              <h2 class="section-title">Centres d'intérêt</h2>
+            </div>
+
+            <div class="interests-grid">
+              <div class="glass-card interest-glass-card tilt-card">
+                <span class="interest-emoji">🏋️‍♂️</span>
+                <div class="interest-title">Sport : Musculation &amp; Natation</div>
+                <div class="interest-desc">Discipline personnelle, dépassement de soi et plus de 10 ans d'engagement en club de natation.</div>
+              </div>
+
+              <div class="glass-card interest-glass-card tilt-card">
+                <span class="interest-emoji">🤖</span>
+                <div class="interest-title">IA &amp; Outils Numériques</div>
+                <div class="interest-desc">Veille technologique active, intelligence artificielle, automatisation et plateformes de vente en ligne.</div>
+              </div>
+
+              <div class="glass-card interest-glass-card tilt-card">
+                <span class="interest-emoji">🎬</span>
+                <div class="interest-title">Vlogs &amp; Montage Vidéo</div>
+                <div class="interest-desc">Création de contenus visuels, storytelling vidéo et réalisation de supports dynamiques.</div>
+              </div>
+
+              <div class="glass-card interest-glass-card tilt-card">
+                <span class="interest-emoji">🎵</span>
+                <div class="interest-title">Musique</div>
+                <div class="interest-desc">Ouverture culturelle, écoute quotidienne et inspiration créative.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           SECTION 6: CONTACT & FORMULAIRE
+           ==================================================================== -->
+      <section id="contact" class="section-block reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">✦ Échangeons ensemble</span>
+          <h2 class="section-title">Me contacter</h2>
+          <p class="section-subtitle">
+            Vous souhaitez échanger autour d'une opportunité professionnelle, d'une alternance ou d'un projet ? Contactez-moi directement ou via ce formulaire.
+          </p>
+        </div>
+
+        <div class="contact-wrapper">
+          <!-- Coordonnées -->
+          <div class="glass-card contact-info-card">
+            <h3 style="font-size:1.25rem; margin-bottom:6px;">Coordonnées directes</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">
+              Basé à Mecquignies (59570), mobile sur le secteur de Valenciennes, Maubeuge, Lille et alentours grâce au Permis B (véhiculé).
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method-item">
+                <div class="contact-method-left">
+                  <div class="contact-icon-box">📞</div>
+                  <div>
+                    <span class="contact-method-label">Téléphone</span>
+                    <a href="tel:+33630861961" class="contact-method-value">06 30 86 19 61</a>
+                  </div>
+                </div>
+                <button type="button" class="copy-mini-btn" onclick="copyText('06 30 86 19 61', 'Numéro copié !')">Copier</button>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-left">
+                  <div class="contact-icon-box">✉️</div>
+                  <div>
+                    <span class="contact-method-label">Email</span>
+                    <a href="mailto:baptiste.marliere@outlook.fr" class="contact-method-value">baptiste.marliere@outlook.fr</a>
+                  </div>
+                </div>
+                <button type="button" class="copy-mini-btn" onclick="copyText('baptiste.marliere@outlook.fr', 'Email copié !')">Copier</button>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-left">
+                  <div class="contact-icon-box">📍</div>
+                  <div>
+                    <span class="contact-method-label">Adresse &amp; Mobilité</span>
+                    <span class="contact-method-value">407 rue du Timon, 59570 Mecquignies, France · Permis B (Véhiculé)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-left">
+                  <div class="contact-icon-box">🔗</div>
+                  <div>
+                    <span class="contact-method-label">Réseau professionnel</span>
+                    <a href="https://www.linkedin.com/in/baptiste-mrlr" target="_blank" rel="noopener noreferrer" class="contact-method-value">Mon profil LinkedIn</a>
+                  </div>
+                </div>
+                <a href="https://www.linkedin.com/in/baptiste-mrlr" target="_blank" rel="noopener noreferrer" class="copy-mini-btn">Ouvrir ↗</a>
+              </div>
+            </div>
+
+            <a href="https://baptiste-mrlr.github.io/CV/CV%202026%20-%20Baptiste%20Marli%C3%A8re.pdf" target="_blank" rel="noopener" class="btn btn-glass" style="width:100%; justify-content:center;">
+              📄 Télécharger mon CV
+            </a>
+          </div>
+
+          <!-- Formulaire EmailJS -->
+          <div class="glass-card contact-form-card">
+            <h3 style="font-size:1.25rem; margin-bottom:6px;">Envoyer un message rapide</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:18px;">
+              Remplissez ce formulaire : vous recevrez automatiquement un accusé de réception par email.
+            </p>
+
+            <form id="contact-form">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="nom">Votre nom</label>
+                  <input type="text" id="nom" name="from_name" placeholder="Jean Dupont" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Votre email</label>
+                  <input type="email" id="email" name="from_email" placeholder="jean.dupont@entreprise.fr" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="sujet">Sujet</label>
+                <input type="text" id="sujet" name="subject" placeholder="Opportunité d'alternance, projet, prise de contact..." required>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Bonjour Baptiste, je souhaiterais échanger avec vous concernant..." required></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn btn-gradient" style="width:100%; justify-content:center;">
+                🚀 Envoyer le message
+              </button>
+              <p id="contact-feedback" style="font-size:0.86rem; margin-top:12px; font-weight:500;"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-notification" role="status" aria-live="polite"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> <strong>Baptiste Marlière</strong> — Portfolio &amp; CV Web · Licence 3 Management des Organisations (IAE Valenciennes)</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // 1. Année automatique
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Thème Clair / Sombre avec sauvegarde
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    const savedTheme = localStorage.getItem('bm-portfolio-theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('bm-portfolio-theme', next);
+      themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     });
-  });
 
-  // Animation scroll IntersectionObserver
-  const sections = document.querySelectorAll('main section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
+    // 3. Menu Mobile
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    mobileBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      mobileBtn.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
     });
-  }, { threshold: 0.1 });
-  sections.forEach(section => observer.observe(section));
-
-  // Fix couleur boutons a:visited
-  document.querySelectorAll('.btn-primary').forEach(el => { el.style.color = '#123456'; });
-  document.querySelectorAll('.btn-outline').forEach(el => { el.style.color = 'white'; });
-
-  // Formulaire EmailJS – double envoi
-  const form = document.getElementById('contact-form');
-  const feedback = document.getElementById('contact-feedback');
-  const submitBtn = document.getElementById('submit-btn');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Envoi en cours...";
-    feedback.style.color = "#666";
-    feedback.textContent = "";
-
-    emailjs.sendForm("service_1ixgzku", "template_jt4nijd", form)
-      .then(function() {
-        return emailjs.sendForm("service_1ixgzku", "template_cnrqwqe", form);
-      })
-      .then(function() {
-        feedback.style.color = "#15803d";
-        feedback.textContent = "✅ Message envoyé ! Vous recevrez une confirmation par mail.";
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Envoyer le message";
-      })
-      .catch(function(error) {
-        feedback.style.color = "#b91c1c";
-        feedback.textContent = "❌ Une erreur est survenue. Veuillez réessayer ou m'écrire directement par mail.";
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Envoyer le message";
-        console.error("EmailJS error:", error);
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        mobileBtn.textContent = '☰';
       });
-  });
-</script>
+    });
 
+    // 4. Barre de progression de scroll & état de la navbar
+    const scrollProgress = document.getElementById('scroll-progress');
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = pct + '%';
+      if (scrollTop > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // 5. Effet Machine à écrire (Typewriter) dans le Hero
+    const roles = [
+      "Management des Organisations",
+      "Création de Sites Web & E-commerce",
+      "Recrutement, RH & Marque Employeur",
+      "Outils Numériques, IA & Gestion"
+    ];
+    let roleIdx = 0;
+    let charIdx = roles[0].length;
+    let isDeleting = false;
+    const typeEl = document.getElementById('typewriter');
+
+    function tickTypewriter() {
+      const currentRole = roles[roleIdx];
+      if (!isDeleting) {
+        typeEl.textContent = currentRole.substring(0, charIdx + 1);
+        charIdx++;
+        if (charIdx === currentRole.length) {
+          isDeleting = true;
+          setTimeout(tickTypewriter, 2200);
+          return;
+        }
+      } else {
+        typeEl.textContent = currentRole.substring(0, charIdx - 1);
+        charIdx--;
+        if (charIdx === 0) {
+          isDeleting = false;
+          roleIdx = (roleIdx + 1) % roles.length;
+        }
+      }
+      setTimeout(tickTypewriter, isDeleting ? 35 : 65);
+    }
+    setTimeout(() => { isDeleting = true; tickTypewriter(); }, 2600);
+
+    // 6. Lumière ambiante qui suit le curseur + Reflets sur les cartes Glass
+    const cursorGlow = document.getElementById('cursor-glow');
+    const glassCards = document.querySelectorAll('.glass-card');
+
+    window.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+
+      glassCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    }, { passive: true });
+
+    // 7. Effet d'inclinaison 3D subtil sur les cartes (.tilt-card)
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 960) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -3.5;
+        const rotateY = ((x - centerX) / centerX) * 3.5;
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // 8. IntersectionObserver : Apparition au scroll + Barres de compétences + Lien actif Navbar
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Animer les barres de compétences à l'intérieur
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.getAttribute('data-width');
+          });
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Lien actif dans la barre de navigation
+    const sections = document.querySelectorAll('main section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navAnchors.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    sections.forEach(sec => navObserver.observe(sec));
+
+    // 9. Filtrage interactif des compétences
+    const filterBtns = document.querySelectorAll('[data-skill-filter]');
+    const skillCards = document.querySelectorAll('[data-skill-cat]');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-skill-filter');
+
+        skillCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-skill-cat') === filter) {
+            card.classList.remove('hidden-card');
+          } else {
+            card.classList.add('hidden-card');
+          }
+        });
+      });
+    });
+
+    // 10. Fonction Copier dans le presse-papiers avec notification Toast
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+    function copyText(text, message) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      }
+      toastEl.textContent = '✅ ' + message;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toastEl.classList.remove('show');
+      }, 2600);
+    }
+
+    // 11. Formulaire EmailJS – Double envoi conservé
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('contact-feedback');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = "⏳ Envoi en cours...";
+      feedback.style.color = "var(--text-secondary)";
+      feedback.textContent = "";
+
+      emailjs.sendForm("service_1ixgzku", "template_jt4nijd", form)
+        .then(function() {
+          return emailjs.sendForm("service_1ixgzku", "template_cnrqwqe", form);
+        })
+        .then(function() {
+          feedback.style.color = "var(--accent-emerald)";
+          feedback.textContent = "✅ Message envoyé avec succès ! Vous allez recevoir une confirmation par email.";
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.textContent = "🚀 Envoyer le message";
+        })
+        .catch(function(error) {
+          feedback.style.color = "#ef4444";
+          feedback.textContent = "❌ Une erreur est survenue. Vous pouvez m'écrire directement à baptiste.marliere@outlook.fr.";
+          submitBtn.disabled = false;
+          submitBtn.textContent = "🚀 Envoyer le message";
+          console.error("EmailJS error:", error);
+        });
+    });
+  </script>
 </body>
 </html>
